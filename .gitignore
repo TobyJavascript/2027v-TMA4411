@@ -1,0 +1,35 @@
+# Quarto
+.quarto/
+_site/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Python
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+
+/.quarto/
+
+**/*.quarto_ipynb
+
+# Private Quarto plugin configuration and sources
+/.private-extensions/
+
+# Installed private extensions
+/_extensions/ctm-assessment/
+/_extensions/ai-feedback/
+/_extensions/ctm-libs/
+/_extensions/pyodide-interaktiv/
+/_extensions/math-exercise/
+/_extensions/jsxgraph/
+/_extensions/py-exercise/
+setup.log

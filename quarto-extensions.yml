@@ -1,0 +1,11 @@
+# The course uses the tested CTM Assessment package: ai-feedback, math-exercise,
+# py-exercise, pyodide-interaktiv and JSXGraph at commits tested together
+# (ctm-assessment's integration/feedback/repos.json). Install with
+# `python scripts/setup.py`.
+#
+# ref: a ctm-assessment branch or commit. `main` follows the tested package;
+# a commit or release tag pins it, for example for a semester.
+plugins:
+  - name: ctm-assessment
+    repo: https://github.com/Erasmus-CTM/ctm-assessment.git
+    ref: main

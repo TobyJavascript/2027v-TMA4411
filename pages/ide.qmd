@@ -1,0 +1,7 @@
+---
+title: "IDE / README"
+---
+
+{{< include ../_includes/ide/setup.md >}}
+
+{{< include ../_includes/ide/manual.md >}}

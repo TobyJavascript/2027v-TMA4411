@@ -1,0 +1,15 @@
+---
+title: "Uke 7 – Differensialligninger I: diagonalisering og y′ = Ay"
+---
+
+::: {.panel-tabset}
+
+## Plan
+
+{{< include ../_includes/uke07/plan.md >}}
+
+## Oppgaver
+
+{{< include ../_includes/uke07/oppgaver.md >}}
+
+:::

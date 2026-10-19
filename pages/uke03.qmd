@@ -1,0 +1,17 @@
+---
+title: "Uke 3 – Lineærtransformasjoner I"
+---
+
+::: {.panel-tabset}
+
+## Plan
+
+{{< include ../_includes/uke03/plan.md >}}
+
+{{< include ../_includes/uke03/materiell.md >}}
+
+## Oppgaver
+
+{{< include ../_includes/uke03/oppgaver.md >}}
+
+:::

@@ -1,0 +1,17 @@
+---
+title: "Uke 4 – Lineærtransformasjoner II"
+---
+
+::: {.panel-tabset}
+
+## Plan
+
+{{< include ../_includes/uke04/plan.md >}}
+
+{{< include ../_includes/uke04/materiell.md >}}
+
+## Oppgaver
+
+{{< include ../_includes/uke04/oppgaver.md >}}
+
+:::

@@ -1,0 +1,17 @@
+---
+title: "Uke 8 – Differensialligninger II: numeriske metoder"
+---
+
+::: {.panel-tabset}
+
+## Plan
+
+{{< include ../_includes/uke08/plan.md >}}
+
+{{< include ../_includes/uke08/materiell.md >}}
+
+## Oppgaver
+
+{{< include ../_includes/uke08/oppgaver.md >}}
+
+:::

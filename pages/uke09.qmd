@@ -1,0 +1,15 @@
+---
+title: "Uke 9 – Differensialligninger III: Runge–Kutta og systemer"
+---
+
+::: {.panel-tabset}
+
+## Plan
+
+{{< include ../_includes/uke09/plan.md >}}
+
+## Oppgaver
+
+{{< include ../_includes/uke09/oppgaver.md >}}
+
+:::

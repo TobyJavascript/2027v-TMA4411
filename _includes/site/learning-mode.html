@@ -1,0 +1,44 @@
+<script>
+(() => {
+  function init() {
+    const controls = document.querySelector('[data-learning-mode]');
+    if (!controls) return;
+    const steps = [...document.querySelectorAll('details.reading-step')];
+    const buttons = [...controls.querySelectorAll('button[data-mode]')];
+    const status = controls.querySelector('[role="status"]');
+    function select(mode) {
+      steps.forEach(step => { step.open = mode === 'reading'; });
+      buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mode === mode)));
+      status.textContent = mode === 'reading'
+        ? (controls.dataset.readingLabel || 'Gå i dybden') + ': prøv selv, og følg forklaringene steg for steg.'
+        : (controls.dataset.lectureLabel || 'Forelesning') + (controls.dataset.lectureLabel ? ': prøv oppgavene før du åpner forklaringene.' : ': eksperimenter og diskusjon. Åpne utdypningene ved behov.');
+      try { sessionStorage.setItem('learning-mode', mode); } catch (_) {}
+      window.dispatchEvent(new Event('resize'));
+    }
+    buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.mode)));
+    let initial = 'lecture';
+    try { initial = sessionStorage.getItem('learning-mode') || initial; } catch (_) {}
+    select(initial === 'reading' ? 'reading' : 'lecture');
+    // A direct link into a closed explanation must still reveal its target.
+    function revealTarget() {
+      let target;
+      try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (_) { return; }
+      for (let node = target; node; node = node.parentElement) {
+        if (node.matches('details')) node.open = true;
+      }
+    }
+    window.addEventListener('hashchange', revealTarget);
+    revealTarget();
+    const beforePrint = new Map();
+    window.addEventListener('beforeprint', () => {
+      steps.forEach(step => { beforePrint.set(step, step.open); step.open = true; });
+    });
+    window.addEventListener('afterprint', () => {
+      beforePrint.forEach((open, step) => { step.open = open; });
+      beforePrint.clear();
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

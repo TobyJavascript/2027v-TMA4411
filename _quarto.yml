@@ -1,0 +1,86 @@
+project:
+  type: website
+  render:
+    - index.qmd
+    - pages/*.qmd
+  resources:
+    - assets/*.ipynb
+    - assets/materiell/*.pdf
+
+lang: nb
+
+filters:
+  - ctm-assessment
+
+website:
+  title: "TMA4411 Matematikk 2B"
+  page-navigation: true
+  page-footer:
+    border: true
+    center: >-
+      TMA4411 Matematikk 2B · NTNU · våren 2027 (utkast)
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - text: "Forside"
+        file: index.qmd
+
+      - text: "IDE / README"
+        file: pages/ide.qmd
+
+      - section: "Lineær algebra"
+        contents:
+          - text: "Uke 1 – Vektorrom I"
+            file: pages/uke01.qmd
+          - text: "Uke 2 – Vektorrom II"
+            file: pages/uke02.qmd
+          - text: "Uke 3 – Lineærtransformasjoner I"
+            file: pages/uke03.qmd
+          - text: "Uke 4 – Lineærtransformasjoner II"
+            file: pages/uke04.qmd
+          - text: "Uke 5 – Indreproduktrom I"
+            file: pages/uke05.qmd
+          - text: "Uke 6 – Indreproduktrom II"
+            file: pages/uke06.qmd
+
+      - section: "Differensialligninger"
+        contents:
+          - text: "Uke 7 – Diagonalisering og y′ = Ay"
+            file: pages/uke07.qmd
+          - text: "Uke 8 – Numeriske metoder for ODE-er"
+            file: pages/uke08.qmd
+          - text: "Uke 9 – Runge–Kutta og systemer"
+            file: pages/uke09.qmd
+
+      - section: "Flervariabel analyse"
+        contents:
+          - text: "Uke 10 – Funksjoner av flere variabler"
+            file: pages/uke10.qmd
+          - text: "Uke 11 – Derivasjon I"
+            file: pages/uke11.qmd
+          - text: "Uke 12 – Derivasjon II"
+            file: pages/uke12.qmd
+          - text: "Uke 13 – Ekstremalpunkter"
+            file: pages/uke13.qmd
+          - text: "Uke 14 – Prøveeksamen og repetisjon"
+            file: pages/uke14.qmd
+
+      - section: "Innleveringer"
+        contents:
+          - text: "Innlevering 1"
+            file: pages/innlevering1.qmd
+          - text: "Innlevering 2"
+            file: pages/innlevering2.qmd
+          - text: "Innlevering 3"
+            file: pages/innlevering3.qmd
+          - text: "Innlevering 4"
+            file: pages/innlevering4.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    include-after-body:
+      - _includes/site/tab-links.html
+      - _includes/site/learning-mode.html

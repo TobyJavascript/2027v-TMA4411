@@ -1,0 +1,108 @@
+<script>
+// Shared fragment navigation for all Quarto pages, including Back/Forward.
+(() => {
+  const key = '__quartoTabPosition';
+  let navigation = 0, restoring = false, scrollTimer;
+  let handledURL = location.href;
+  history.scrollRestoration = 'manual';
+
+  function targetFor(hash) {
+    if (!hash || hash === '#') return null;
+    try { return document.getElementById(decodeURIComponent(hash.slice(1))); }
+    catch (_) { return null; }
+  }
+  function ancestors(target) {
+    const panes = [];
+    for (let el = target; el; el = el.parentElement) {
+      if (el.classList.contains('tab-pane')) panes.unshift(el);
+    }
+    return panes;
+  }
+  function snapshot() {
+    return { x: window.scrollX, y: window.scrollY,
+      panes: Array.from(document.querySelectorAll('.tab-pane.active'), el => el.id) };
+  }
+  function save() {
+    if (restoring) return;
+    const state = history.state;
+    // Preserve state owned by Quarto or other shared scripts.
+    history.replaceState({ ...(state && typeof state === 'object' ? state : {}),
+      [key]: snapshot() }, '', location.href);
+  }
+  function open(pane) {
+    if (pane.classList.contains('active')) return Promise.resolve();
+    const tab = document.getElementById(pane.getAttribute('aria-labelledby'));
+    if (!tab || !window.bootstrap?.Tab) return Promise.resolve();
+    return new Promise(resolve => {
+      tab.addEventListener('shown.bs.tab', resolve, { once: true });
+      window.bootstrap.Tab.getOrCreateInstance(tab).show();
+    });
+  }
+  const frame = () => new Promise(resolve => requestAnimationFrame(resolve));
+  async function navigate(position, target) {
+    const request = ++navigation;
+    restoring = true;
+    clearTimeout(scrollTimer);
+    // DOM order puts outer tab panes before nested ones.
+    const panes = position ? position.panes.map(id => document.getElementById(id)).filter(Boolean)
+      : target ? ancestors(target) : [];
+    for (const pane of panes) {
+      if (request !== navigation) return;
+      await open(pane);
+    }
+    if (request !== navigation) return;
+    window.dispatchEvent(new Event('resize'));
+    await frame(); await frame();
+    if (request !== navigation) return;
+    if (position) {
+      window.scrollTo({ left: position.x, top: position.y, behavior: 'instant' });
+    } else if (target && target.getClientRects().length) {
+      const header = document.getElementById('quarto-header');
+      const clearance = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      window.scrollTo({ top: Math.max(0, window.scrollY + target.getBoundingClientRect().top - clearance - 16), behavior: 'instant' });
+    }
+    await frame();
+    if (request !== navigation) return;
+    restoring = false;
+    save();
+  }
+  document.addEventListener('click', event => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest?.('a[href]');
+    if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+    save();
+    if (link.getAttribute('role') === 'tab') return;
+    const url = new URL(link.href, location.href);
+    if (url.origin !== location.origin || url.pathname !== location.pathname || url.search !== location.search) return;
+    const target = targetFor(url.hash);
+    if (!target || !window.bootstrap?.Tab) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (location.hash !== url.hash) history.pushState(null, '', url.hash);
+    handledURL = location.href;
+    void navigate(null, target);
+  }, true);
+
+  window.addEventListener('scroll', () => {
+    if (restoring) return;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(save, 100);
+  }, { passive: true });
+  document.addEventListener('shown.bs.tab', () => { if (!restoring) save(); });
+  window.addEventListener('pagehide', save);
+  window.addEventListener('popstate', event => {
+    handledURL = location.href;
+    void navigate(event.state?.[key] || null, targetFor(location.hash));
+  });
+  window.addEventListener('hashchange', () => {
+    // Back/Forward emits popstate and then hashchange: restore only once.
+    if (handledURL === location.href) return;
+    handledURL = location.href;
+    void navigate(null, targetFor(location.hash));
+  });
+  window.addEventListener('pageshow', () => {
+    handledURL = location.href;
+    void navigate(history.state?.[key] || null, targetFor(location.hash));
+  });
+})();
+</script>

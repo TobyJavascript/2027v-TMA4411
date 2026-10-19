@@ -1,0 +1,5 @@
+---
+title: "Innlevering 4 – Funksjoner av flere variabler"
+---
+
+{{< include ../_includes/innleveringer/innlevering4.md >}}

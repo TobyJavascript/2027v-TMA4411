@@ -1,0 +1,17 @@
+---
+title: "Uke 6 – Indreproduktrom II"
+---
+
+::: {.panel-tabset}
+
+## Plan
+
+{{< include ../_includes/uke06/plan.md >}}
+
+{{< include ../_includes/uke06/materiell.md >}}
+
+## Oppgaver
+
+{{< include ../_includes/uke06/oppgaver.md >}}
+
+:::

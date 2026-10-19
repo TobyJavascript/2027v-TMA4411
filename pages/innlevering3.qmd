@@ -1,0 +1,5 @@
+---
+title: "Innlevering 3 – Diagonalisering og differensialligninger"
+---
+
+{{< include ../_includes/innleveringer/innlevering3.md >}}

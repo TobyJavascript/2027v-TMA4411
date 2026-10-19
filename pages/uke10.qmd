@@ -1,0 +1,17 @@
+---
+title: "Uke 10 – Funksjoner av flere variabler"
+---
+
+::: {.panel-tabset}
+
+## Plan
+
+{{< include ../_includes/uke10/plan.md >}}
+
+{{< include ../_includes/uke10/materiell.md >}}
+
+## Oppgaver
+
+{{< include ../_includes/uke10/oppgaver.md >}}
+
+:::

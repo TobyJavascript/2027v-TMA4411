@@ -1,0 +1,162 @@
+
+/* Hide matplotlib toolbar (Pyodide canvas) */
+.matplotlib-toolbar {
+  display: none !important;
+}
+
+/* ===== Layout polish ===== */
+
+/* Page max width for readability */
+.page-columns {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Left navigation column */
+.sidebar {
+  width: 220px;
+}
+
+/* Content column spacing */
+.main {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Center matplotlib canvases */
+canvas {
+  display: block;
+  margin: 1rem auto;
+}
+
+/* Slight card-style feel for plots */
+canvas {
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Reduce excessive spacing around code cells */
+.cell-output-display {
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Tab polish */
+.nav-tabs .nav-link {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #f5f5f5;
+  border-bottom-color: transparent;
+}
+
+/* Headings spacing */
+h2, h3 {
+  margin-top: 2rem;
+}
+
+/* Green pyodide status light alignment */
+.pyodide-status {
+  margin-bottom: 1rem;
+}
+
+/* Keep fixed-size JSXGraph boards inside the reading column on small screens. */
+.jxgbox {
+  max-width: 100%;
+}
+
+/* Shared narrative, optional step-by-step reading explanations. */
+.learning-mode {
+  padding: 0.85rem 1rem;
+  margin: 1rem 0 1.5rem;
+  border: 1px solid #9aaebc;
+  border-radius: 0.4rem;
+  background: #f4f8fa;
+}
+.learning-mode button {
+  padding: 0.4rem 0.85rem;
+  margin: 0.25rem 0.4rem 0.25rem 0;
+  border: 1px solid #245b79;
+  border-radius: 0.3rem;
+  background: white;
+  color: #183e53;
+}
+.learning-mode button[aria-pressed="true"] { background: #245b79; color: white; }
+.learning-mode button:focus-visible, details.reading-step > summary:focus-visible {
+  outline: 3px solid #ad6600;
+  outline-offset: 3px;
+}
+.learning-mode [role="status"] { display: block; margin-top: 0.4rem; font-size: 0.9rem; }
+main details.reading-step, main details.learning-hint, main details.learning-extension {
+  margin: 1rem 0;
+  padding: 0.7rem 1rem;
+  border-left: 3px solid #7899ac;
+  background: #f6f8fa;
+}
+main details > summary { cursor: pointer; font-weight: 600; }
+main details[open] > summary { margin-bottom: 0.8rem; }
+@media print { .learning-mode { display: none; } }
+
+/* Keep the model's static reference graph beside its explanation. */
+.week5-network-model {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 1.5rem;
+  align-items: start;
+}
+.week5-network-figure { max-width: 300px; margin-inline: auto; }
+.week5-network-figure img { display: block; width: 100%; height: auto; }
+.week5-network-figure figcaption { font-size: 0.85rem; }
+@media (max-width: 760px) {
+  .week5-network-model { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+}
+
+/* Keep the course overview readable within narrow screens. */
+.course-overview table {
+  width: 100%;
+  table-layout: fixed;
+}
+.course-overview th:first-child {
+  width: 5rem;
+}
+.course-overview th:nth-child(2) {
+  width: 34%;
+}
+.course-overview th:first-child,
+.course-overview td:first-child {
+  white-space: nowrap;
+}
+.course-overview td:first-child {
+  padding: 0;
+}
+.course-overview td:first-child a {
+  display: block;
+  padding: 0.65rem 0.5rem;
+  font-weight: 600;
+}
+.course-overview th,
+.course-overview td {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 600px) {
+  .course-overview thead {
+    display: none;
+  }
+  .course-overview tbody {
+    display: block;
+  }
+  .course-overview tr {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr);
+    border-bottom: 1px solid var(--bs-border-color);
+  }
+  .course-overview td {
+    border: 0;
+  }
+  .course-overview td:nth-child(3) {
+    grid-column: 1 / -1;
+    padding: 0 0.5rem 0.8rem;
+  }
+}

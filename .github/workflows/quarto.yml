@@ -1,0 +1,58 @@
+name: Render and Publish Quarto
+
+permissions:
+  contents: write
+
+concurrency:
+  # Pull requests only build; they must not cancel a publish from main.
+  group: ${{ github.event_name == 'pull_request' && format('build-{0}', github.ref) || 'gh-pages' }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out course repository
+        uses: actions/checkout@v6
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: python -m pip install jupyter nbformat pyyaml sympy
+      
+      - name: Install Quarto extensions
+        run: |
+          quarto --version
+          set -o pipefail
+          if ! python scripts/setup.py 2>&1 | tee setup.log; then
+            # Show the end of the output in the run summary.
+            echo "::error title=Setup failed::$(tail -n 40 setup.log | sed 's/%/%25/g' | sed ':a;N;$!ba;s/\n/%0A/g')"
+            exit 1
+          fi
+
+      - name: Render Quarto project
+        # Exercise author tests run during render and need SymPy.
+        env:
+          MATH_EXERCISE_PYTHON: python
+        run: quarto render
+
+      - name: Publish to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
