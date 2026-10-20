@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nb" xml:lang="nb"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Uke 4 – Lineærtransformasjoner II – TMA4411 Matematikk 2B</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../pages/uke05.html" rel="next">
+<link href="../pages/uke03.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5337165f197680d68c11b8afac1372bd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/ctm-ui-0.9.0/ctm-ui.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/ctm-nav-0.9.0/ctm-nav.js"></script>
+<script src="../site_libs/quarto-contrib/ai-feedback-0.9.0/feedback-core.js"></script>
+<script src="../site_libs/quarto-contrib/ai-feedback-0.9.0/feedback-dom.js"></script>
+<script src="../site_libs/quarto-contrib/ai-feedback-0.9.0/ai-feedback.js"></script>
+<link href="../site_libs/quarto-contrib/ai-feedback-0.9.0/ai-feedback.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/ctm-runtime-0.9.0/pyodide-runtime.js"></script>
+<script src="../site_libs/quarto-contrib/ctm-checkers-0.1.1.dev0+be41199f/ctm-checkers.js"></script>
+<script src="../site_libs/quarto-contrib/ctm-locale-0.9.0/ctm-locale.js"></script>
+<script src="../site_libs/quarto-contrib/ctm-locale-0.9.0/common.js"></script>
+<script src="../site_libs/quarto-contrib/ctm-locale-math-exercise-0.9.0/math-exercise.js"></script>
+<link href="../site_libs/quarto-contrib/math-exercise-0.11.0/matrix-input.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/math-exercise-0.11.0/math-exercise.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Ingen resultater",
+    "search-matching-documents-text": "Samsvarende dokumenter",
+    "search-copy-link-title": "Kopier link for å søke",
+    "search-hide-matches-text": "Skjul ytterlige resultater",
+    "search-more-match-text": "annet resultat i dette dokumentet",
+    "search-more-matches-text": "andre resultater i dette dokumentet",
+    "search-clear-button-title": "Tøm",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Avbryt",
+    "search-submit-button-title": "Send inn",
+    "search-label": "Søk"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Slå av eller på sidebarnavigering" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/uke01.html">Lineær algebra</a></li><li class="breadcrumb-item"><a href="../pages/uke04.html">Uke 4 – Lineærtransformasjoner II</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Slå av eller på sidebarnavigering" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Søk" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">TMA4411 Matematikk 2B</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Søk"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Forside</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/ide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDE / README</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lineær algebra</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Slå på delen">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 1 – Vektorrom I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 2 – Vektorrom II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 3 – Lineærtransformasjoner I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke04.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Uke 4 – Lineærtransformasjoner II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 5 – Indreproduktrom I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 6 – Indreproduktrom II</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Differensialligninger</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Slå på delen">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 7 – Diagonalisering og y′ = Ay</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 8 – Numeriske metoder for ODE-er</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 9 – Runge–Kutta og systemer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Flervariabel analyse</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Slå på delen">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 10 – Funksjoner av flere variabler</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 11 – Derivasjon I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 12 – Derivasjon II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 13 – Ekstremalpunkter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/uke14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Uke 14 – Prøveeksamen og repetisjon</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Innleveringer</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Slå på delen">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/innlevering1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Innlevering 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/innlevering2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Innlevering 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/innlevering3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Innlevering 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/innlevering4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Innlevering 4</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<script>window.__aiFeedbackPolicies = {"layers":[],"pageLayers":[]};</script>
+<script>window.__aiFeedbackConfig = {"baseUrl":"","mode":"copy","model":""};</script>
+<script>window.__mathExerciseConfig = {"lang":"nb","stopAfter":20};</script>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/uke01.html">Lineær algebra</a></li><li class="breadcrumb-item"><a href="../pages/uke04.html">Uke 4 – Lineærtransformasjoner II</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Uke 4 – Lineærtransformasjoner II</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Plan</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Oppgaver</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><strong>Uke 5 i kalenderen, 1.–5. februar 2027.</strong> Husk 1. februar: frist for semesterregistrering og semesteravgift i Studentweb.</p>
+<p>Når vi har valgt basiser, kan enhver lineærtransformasjon mellom endeligdimensjonale rom skrives som en matrise. Matrisen avhenger av basisen, og overgangsmatriser forteller hvordan koordinatene endres når vi bytter basis. Vi avslutter med et geometrisk blikk på indreprodukt, norm og projeksjon i <span class="math inline">\(\mathbb{R}^n\)</span>, som forbereder neste uke.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="forelesning-i-lineærtransformasjoner-ii" class="level4">
+<h4 class="anchored" data-anchor-id="forelesning-i-lineærtransformasjoner-ii">Forelesning I – Lineærtransformasjoner II</h4>
+<ul>
+<li>Matriserepresentasjoner (B2 Tm 6.4.2, B2 Tm 6.4.3)</li>
+<li>Overgangsmatriser i <span class="math inline">\(\mathbb{R}^n\)</span> (B2 Tm 6.5.1)</li>
+</ul>
+<p><strong>Les:</strong> B2 6.4–6.5</p>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="forelesning-ii-basisbytte-og-geometri-i-mathbbrn" class="level4">
+<h4 class="anchored" data-anchor-id="forelesning-ii-basisbytte-og-geometri-i-mathbbrn">Forelesning II – basisbytte og geometri i <span class="math inline">\(\mathbb{R}^n\)</span></h4>
+<ul>
+<li>Basisbytte for polynomer</li>
+<li>Geometrisk blikk på indreprodukt, norm og projeksjon i <span class="math inline">\(\mathbb{R}^n\)</span> (B1 Sek 4.1)</li>
+</ul>
+<p><strong>Les:</strong> B1 4.1, B2 6.5</p>
+</section>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Antas kjent fra TMA4400">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Antas kjent fra TMA4400
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Forelesning I:</strong> koordinatvektorer og matriser (B1 3.5, B2 6.4).</li>
+<li><strong>Forelesning II:</strong> koordinatvektorer og matriser (B1 3.3, B2 6.4).</li>
+</ul>
+</div>
+</div>
+<section id="materiell" class="level3">
+<h3 class="anchored" data-anchor-id="materiell">Materiell</h3>
+<p>Forelesnings- og plenumsmateriell fra våren 2026. Materiellet for 2027 legges ut her etter hvert.</p>
+<ul>
+<li><a href="../assets/materiell/tma4411_slides_4_.pdf" target="_blank">Lysark: koordinatvektorer og matriserepresentasjoner</a> – matriserepresentasjoner og overgangsmatriser.</li>
+<li><strong>Plenumsregning 2</strong> (uke 5 i 2026; basis, underrom og dimensjon; kjerne og rekkevidde): <a href="../assets/materiell/2BPlenumopp2.pdf" target="_blank">oppgaver</a> · <a href="../assets/materiell/2BPlenumfasit2.pdf" target="_blank">notater fra plenum</a></li>
+</ul>
+</section>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Oppgavene bygger på flervalgsoppgavesett 4 fra 2026, omformulert slik at du må regne deg fram til svaret i stedet for å velge blant alternativer. Svar, trykk <strong>Sjekk</strong>, og bruk eventuelt <strong>Tilbakemelding</strong> for et hint. Åpne løsningsforslaget først når du har prøvd selv.</p>
+<div id="uke04-matrise-context" class="math-exercise-context">
+<p><strong>Begreper i denne uken.</strong> La <span data-ai-feedback-tex="T\colon V\to V" data-ai-feedback-display="false"><span class="math inline">\(T\colon V\to V\)</span></span> være lineær og <span data-ai-feedback-tex="\mathcal{B}=\{b_1,\dots,b_n\}" data-ai-feedback-display="false"><span class="math inline">\(\mathcal{B}=\{b_1,\dots,b_n\}\)</span></span> en basis for <span data-ai-feedback-tex="V" data-ai-feedback-display="false"><span class="math inline">\(V\)</span></span>.</p>
+<ul>
+<li><em>Matriserepresentasjonen</em> <span data-ai-feedback-tex="[T]_{\mathcal{B}}" data-ai-feedback-display="false"><span class="math inline">\([T]_{\mathcal{B}}\)</span></span> er <span data-ai-feedback-tex="n\times n" data-ai-feedback-display="false"><span class="math inline">\(n\times n\)</span></span>-matrisen der kolonne <span data-ai-feedback-tex="j" data-ai-feedback-display="false"><span class="math inline">\(j\)</span></span> er koordinatvektoren <span data-ai-feedback-tex="[T(b_j)]_{\mathcal{B}}" data-ai-feedback-display="false"><span class="math inline">\([T(b_j)]_{\mathcal{B}}\)</span></span>. Da er <span data-ai-feedback-tex="[T(v)]_{\mathcal{B}}=[T]_{\mathcal{B}}[v]_{\mathcal{B}}" data-ai-feedback-display="false"><span class="math inline">\([T(v)]_{\mathcal{B}}=[T]_{\mathcal{B}}[v]_{\mathcal{B}}\)</span></span>.</li>
+<li><em>Overgangsmatrisen</em> fra <span data-ai-feedback-tex="\mathcal{B}'" data-ai-feedback-display="false"><span class="math inline">\(\mathcal{B}'\)</span></span> til <span data-ai-feedback-tex="\mathcal{B}" data-ai-feedback-display="false"><span class="math inline">\(\mathcal{B}\)</span></span> er matrisen <span data-ai-feedback-tex="P_{\mathcal{B}\leftarrow\mathcal{B}'}" data-ai-feedback-display="false"><span class="math inline">\(P_{\mathcal{B}\leftarrow\mathcal{B}'}\)</span></span> der kolonne <span data-ai-feedback-tex="j" data-ai-feedback-display="false"><span class="math inline">\(j\)</span></span> er <span data-ai-feedback-tex="[b'_j]_{\mathcal{B}}" data-ai-feedback-display="false"><span class="math inline">\([b'_j]_{\mathcal{B}}\)</span></span>. Den oppfyller <span data-ai-feedback-tex="[v]_{\mathcal{B}}=P_{\mathcal{B}\leftarrow\mathcal{B}'}[v]_{\mathcal{B}'}" data-ai-feedback-display="false"><span class="math inline">\([v]_{\mathcal{B}}=P_{\mathcal{B}\leftarrow\mathcal{B}'}[v]_{\mathcal{B}'}\)</span></span>, og <span data-ai-feedback-tex="P_{\mathcal{B}'\leftarrow\mathcal{B}}=P_{\mathcal{B}\leftarrow\mathcal{B}'}^{-1}" data-ai-feedback-display="false"><span class="math inline">\(P_{\mathcal{B}'\leftarrow\mathcal{B}}=P_{\mathcal{B}\leftarrow\mathcal{B}'}^{-1}\)</span></span>.</li>
+<li>I <span data-ai-feedback-tex="\mathbb{R}^n" data-ai-feedback-display="false"><span class="math inline">\(\mathbb{R}^n\)</span></span> er prikkproduktet <span data-ai-feedback-tex="x\cdot y=x^Ty" data-ai-feedback-display="false"><span class="math inline">\(x\cdot y=x^Ty\)</span></span> og normen <span data-ai-feedback-tex="|x|=\sqrt{x\cdot x}" data-ai-feedback-display="false"><span class="math inline">\(|x|=\sqrt{x\cdot x}\)</span></span>.</li>
+</ul>
+</div>
+<section id="oppgave-1-matrisen-til-tfxf" class="level3">
+<h3 class="anchored" data-anchor-id="oppgave-1-matrisen-til-tfxf">Oppgave 1 – matrisen til <span class="math inline">\(T(f)=xf'\)</span></h3>
+<div id="uke04-opp1-context" class="math-exercise-context">
+<p>La <span data-ai-feedback-tex="T\colon\mathbb{P}_4\to\mathbb{P}_4" data-ai-feedback-display="false"><span class="math inline">\(T\colon\mathbb{P}_4\to\mathbb{P}_4\)</span></span> være gitt ved <span data-ai-feedback-tex="T(f(x))=xf'(x)" data-ai-feedback-display="false"><span class="math inline">\(T(f(x))=xf'(x)\)</span></span>, som i uke 3. Vi ser på to basiser for <span data-ai-feedback-tex="\mathbb{P}_4" data-ai-feedback-display="false"><span class="math inline">\(\mathbb{P}_4\)</span></span>:</p>
+<p><span data-ai-feedback-tex="
+\mathcal{B}=\{1,x,x^2,x^3,x^4\},\qquad
+\mathcal{B}'=\{1,(1+x),(1+x)^2,(1+x)^3,(1+x)^4\}.
+" data-ai-feedback-display="true"><span class="math display">\[
+\mathcal{B}=\{1,x,x^2,x^3,x^4\},\qquad
+\mathcal{B}'=\{1,(1+x),(1+x)^2,(1+x)^3,(1+x)^4\}.
+\]</span></span></p>
+</div>
+<section id="a-standardbasisen" class="level4">
+<h4 class="anchored" data-anchor-id="a-standardbasisen">a) Standardbasisen</h4>
+<div class="math-exercise-cell" id="math-exercise-1" data-label="uke04-opp1a-standard" data-mode="equivalent" data-reject="" data-vars="" data-tolerance="" data-decplaces="" data-sigfigs="" data-form="" data-checker="&quot;&quot;" data-packages="[]" data-response="" data-embed-response="false" data-partial-credit="false" data-form-credit="0.5" data-field-labels="[]" data-vecdir="col" data-feedback-policy="{&quot;exercise&quot;:&quot;uke04-opp1a-standard&quot;,&quot;name&quot;:&quot;&quot;}" data-context-mode="explicit" data-context-refs="uke04-matrise-context, uke04-opp1-context" data-context="&quot;a) Standardbasisen&quot;" data-fields="[&quot;math-exercise-1-f1&quot;,&quot;math-exercise-1-f2&quot;,&quot;math-exercise-1-f3&quot;,&quot;math-exercise-1-f4&quot;,&quot;math-exercise-1-f5&quot;,&quot;math-exercise-1-f6&quot;,&quot;math-exercise-1-f7&quot;,&quot;math-exercise-1-f8&quot;,&quot;math-exercise-1-f9&quot;,&quot;math-exercise-1-f10&quot;,&quot;math-exercise-1-f11&quot;,&quot;math-exercise-1-f12&quot;,&quot;math-exercise-1-f13&quot;,&quot;math-exercise-1-f14&quot;,&quot;math-exercise-1-f15&quot;,&quot;math-exercise-1-f16&quot;,&quot;math-exercise-1-f17&quot;,&quot;math-exercise-1-f18&quot;,&quot;math-exercise-1-f19&quot;,&quot;math-exercise-1-f20&quot;,&quot;math-exercise-1-f21&quot;,&quot;math-exercise-1-f22&quot;,&quot;math-exercise-1-f23&quot;,&quot;math-exercise-1-f24&quot;,&quot;math-exercise-1-f25&quot;]" data-structural-field-labels="[&quot;m1,1&quot;,&quot;m1,2&quot;,&quot;m1,3&quot;,&quot;m1,4&quot;,&quot;m1,5&quot;,&quot;m2,1&quot;,&quot;m2,2&quot;,&quot;m2,3&quot;,&quot;m2,4&quot;,&quot;m2,5&quot;,&quot;m3,1&quot;,&quot;m3,2&quot;,&quot;m3,3&quot;,&quot;m3,4&quot;,&quot;m3,5&quot;,&quot;m4,1&quot;,&quot;m4,2&quot;,&quot;m4,3&quot;,&quot;m4,4&quot;,&quot;m4,5&quot;,&quot;m5,1&quot;,&quot;m5,2&quot;,&quot;m5,3&quot;,&quot;m5,4&quot;,&quot;m5,5&quot;]">
+<div class="math-exercise-caption math-exercise-toggle" data-math-exercise-source="Matrisen med hensyn på B" role="button" tabindex="0" aria-expanded="false"><span class="math-chevron" aria-hidden="true"></span>Matrisen med hensyn på B</div>
+
+<div class="math-exercise-body" aria-hidden="true">
+<div class="math-exercise-question" data-math-exercise-source="Fyll inn \([T]_{\mathcal{B}}\).<br>
+<br>
+\([T]_{\mathcal{B}}=\) <span class=&quot;math-mat&quot; style=&quot;--cols:5&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f1&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f2&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f3&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f4&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f5&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f6&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f7&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f8&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f9&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f10&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f11&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f12&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f13&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f14&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f15&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f16&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f17&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f18&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f19&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f20&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f21&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f22&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f23&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f24&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-1-f25&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;></span>">Fyll inn \([T]_{\mathcal{B}}\).<br>
+<br>
+\([T]_{\mathcal{B}}=\) <span class="math-mat" style="--cols:5"><input type="text" id="math-exercise-1-f1" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f2" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f3" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f4" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f5" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f6" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f7" data-answer="1" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f8" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f9" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f10" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f11" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f12" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f13" data-answer="2" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f14" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f15" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f16" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f17" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f18" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f19" data-answer="3" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f20" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f21" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f22" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f23" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f24" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-1-f25" data-answer="4" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"></span></div>
+
+<div class="math-exercise-controls">
+  <button type="button" class="btn btn-primary math-check-btn">✓&nbsp;Sjekk</button>
+  <button type="button" class="btn btn-light math-legend-btn">ⓘ&nbsp;Inntastingshjelp</button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-light math-feedback-btn">💬&nbsp;Tilbakemelding</button>
+    <button type="button" class="btn btn-light math-reconfig-btn" title="Endre KI-oppsett">⚙</button>
+  </div>
+</div>
+<div class="math-legend-panel" style="display:none;"></div>
+<div class="math-feedback-area"></div>
+</div>
+</div>
+</section>
+<section id="b-en-annen-basis" class="level4">
+<h4 class="anchored" data-anchor-id="b-en-annen-basis">b) En annen basis</h4>
+<p>For å finne kolonne <span class="math inline">\(k\)</span> i <span class="math inline">\([T]_{\mathcal{B}'}\)</span> kan det lønne seg å skrive <span class="math inline">\(x=(1+x)-1\)</span>.</p>
+<div class="math-exercise-cell" id="math-exercise-2" data-label="uke04-opp1b-skift" data-mode="equivalent" data-reject="" data-vars="" data-tolerance="" data-decplaces="" data-sigfigs="" data-form="" data-checker="&quot;&quot;" data-packages="[]" data-response="" data-embed-response="false" data-partial-credit="false" data-form-credit="0.5" data-field-labels="[]" data-vecdir="col" data-feedback-policy="{&quot;exercise&quot;:&quot;uke04-opp1b-skift&quot;,&quot;name&quot;:&quot;&quot;}" data-context-mode="explicit" data-context-refs="uke04-matrise-context, uke04-opp1-context" data-context="&quot;b) En annen basis\nFor å finne kolonne \\(k\\) i \\([T]_{\\mathcal{B}'}\\) kan det lønne seg å skrive \\(x=(1+x)-1\\).&quot;" data-fields="[&quot;math-exercise-2-f1&quot;,&quot;math-exercise-2-f2&quot;,&quot;math-exercise-2-f3&quot;,&quot;math-exercise-2-f4&quot;,&quot;math-exercise-2-f5&quot;,&quot;math-exercise-2-f6&quot;,&quot;math-exercise-2-f7&quot;,&quot;math-exercise-2-f8&quot;,&quot;math-exercise-2-f9&quot;,&quot;math-exercise-2-f10&quot;,&quot;math-exercise-2-f11&quot;,&quot;math-exercise-2-f12&quot;,&quot;math-exercise-2-f13&quot;,&quot;math-exercise-2-f14&quot;,&quot;math-exercise-2-f15&quot;,&quot;math-exercise-2-f16&quot;,&quot;math-exercise-2-f17&quot;,&quot;math-exercise-2-f18&quot;,&quot;math-exercise-2-f19&quot;,&quot;math-exercise-2-f20&quot;,&quot;math-exercise-2-f21&quot;,&quot;math-exercise-2-f22&quot;,&quot;math-exercise-2-f23&quot;,&quot;math-exercise-2-f24&quot;,&quot;math-exercise-2-f25&quot;]" data-structural-field-labels="[&quot;m1,1&quot;,&quot;m1,2&quot;,&quot;m1,3&quot;,&quot;m1,4&quot;,&quot;m1,5&quot;,&quot;m2,1&quot;,&quot;m2,2&quot;,&quot;m2,3&quot;,&quot;m2,4&quot;,&quot;m2,5&quot;,&quot;m3,1&quot;,&quot;m3,2&quot;,&quot;m3,3&quot;,&quot;m3,4&quot;,&quot;m3,5&quot;,&quot;m4,1&quot;,&quot;m4,2&quot;,&quot;m4,3&quot;,&quot;m4,4&quot;,&quot;m4,5&quot;,&quot;m5,1&quot;,&quot;m5,2&quot;,&quot;m5,3&quot;,&quot;m5,4&quot;,&quot;m5,5&quot;]">
+<div class="math-exercise-caption math-exercise-toggle" data-math-exercise-source="Matrisen med hensyn på B′" role="button" tabindex="0" aria-expanded="false"><span class="math-chevron" aria-hidden="true"></span>Matrisen med hensyn på B′</div>
+
+<div class="math-exercise-body" aria-hidden="true">
+<div class="math-exercise-question" data-math-exercise-source="Fyll inn \([T]_{\mathcal{B}'}\).<br>
+<br>
+\([T]_{\mathcal{B}'}=\) <span class=&quot;math-mat&quot; style=&quot;--cols:5&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f1&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f2&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f3&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f4&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f5&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f6&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f7&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f8&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f9&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f10&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f11&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f12&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f13&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f14&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f15&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f16&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f17&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f18&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f19&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f20&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f21&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f22&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f23&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f24&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-2-f25&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;></span>">Fyll inn \([T]_{\mathcal{B}'}\).<br>
+<br>
+\([T]_{\mathcal{B}'}=\) <span class="math-mat" style="--cols:5"><input type="text" id="math-exercise-2-f1" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f2" data-answer="-1" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f3" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f4" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f5" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f6" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f7" data-answer="1" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f8" data-answer="-2" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f9" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f10" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f11" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f12" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f13" data-answer="2" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f14" data-answer="-3" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f15" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f16" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f17" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f18" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f19" data-answer="3" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f20" data-answer="-4" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f21" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f22" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f23" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f24" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-2-f25" data-answer="4" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"></span></div>
+
+<div class="math-exercise-controls">
+  <button type="button" class="btn btn-primary math-check-btn">✓&nbsp;Sjekk</button>
+  <button type="button" class="btn btn-light math-legend-btn">ⓘ&nbsp;Inntastingshjelp</button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-light math-feedback-btn">💬&nbsp;Tilbakemelding</button>
+    <button type="button" class="btn btn-light math-reconfig-btn" title="Endre KI-oppsett">⚙</button>
+  </div>
+</div>
+<div class="math-legend-panel" style="display:none;"></div>
+<div class="math-feedback-area"></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Løsningsforslag til oppgave 1">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tips</span>Løsningsforslag til oppgave 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>a)</strong> <span class="math inline">\(T(x^k)=kx^k\)</span>, så <span class="math inline">\([T(x^k)]_{\mathcal{B}}=k\,e_{k+1}\)</span>. Kolonnene gir</p>
+<p><span class="math display">\[
+[T]_{\mathcal{B}}=\operatorname{diag}(0,1,2,3,4).
+\]</span></p>
+<p>(Matrisen med <span class="math inline">\(1/k\)</span> på diagonalen ville svart til en antiderivasjon, og matrisen med bare enere til <span class="math inline">\(f\mapsto f-f(0)\)</span>.)</p>
+<p><strong>b)</strong> Med <span class="math inline">\(y=1+x\)</span> er <span class="math inline">\(x=y-1\)</span> og</p>
+<p><span class="math display">\[
+T\big((1+x)^k\big)=x\cdot k(1+x)^{k-1}=k\big(y-1\big)y^{k-1}=k\,y^k-k\,y^{k-1}.
+\]</span></p>
+<p>Kolonne <span class="math inline">\(k\)</span> (med <span class="math inline">\(k=0,\dots,4\)</span>) har altså <span class="math inline">\(k\)</span> på diagonalen og <span class="math inline">\(-k\)</span> rett over:</p>
+<p><span class="math display">\[
+[T]_{\mathcal{B}'}=\begin{pmatrix}
+0&amp;-1&amp;0&amp;0&amp;0\\0&amp;1&amp;-2&amp;0&amp;0\\0&amp;0&amp;2&amp;-3&amp;0\\0&amp;0&amp;0&amp;3&amp;-4\\0&amp;0&amp;0&amp;0&amp;4
+\end{pmatrix}.
+\]</span></p>
+<p>Begge matrisene er øvre triangulære med samme diagonal, slik de må være: <span class="math inline">\([T]_{\mathcal{B}'}=P^{-1}[T]_{\mathcal{B}}P\)</span> har samme egenverdier som <span class="math inline">\([T]_{\mathcal{B}}\)</span>. Den nedre triangulære varianten i flervalgsversjonen kommer av å skrive koordinatvektorene som rader i stedet for kolonner.</p>
+<p><strong>Konklusjon fra flervalgsversjonen:</strong> (ii) for <span class="math inline">\(\mathcal{B}\)</span> og (i) for <span class="math inline">\(\mathcal{B}'\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="oppgave-2-overgangsmatriser-i-mathbbr2" class="level3">
+<h3 class="anchored" data-anchor-id="oppgave-2-overgangsmatriser-i-mathbbr2">Oppgave 2 – overgangsmatriser i <span class="math inline">\(\mathbb{R}^2\)</span></h3>
+<div id="uke04-opp2-context" class="math-exercise-context">
+<p>La <span data-ai-feedback-tex="\mathcal{B}=\{(1,0),(0,1)\}" data-ai-feedback-display="false"><span class="math inline">\(\mathcal{B}=\{(1,0),(0,1)\}\)</span></span> være standardbasisen og <span data-ai-feedback-tex="\mathcal{B}'=\{(1,1),(-1,1)\}" data-ai-feedback-display="false"><span class="math inline">\(\mathcal{B}'=\{(1,1),(-1,1)\}\)</span></span> en annen basis for <span data-ai-feedback-tex="\mathbb{R}^2" data-ai-feedback-display="false"><span class="math inline">\(\mathbb{R}^2\)</span></span>.</p>
+</div>
+<div class="math-exercise-cell" id="math-exercise-3" data-label="uke04-opp2a-overgang" data-mode="equivalent" data-reject="" data-vars="" data-tolerance="" data-decplaces="" data-sigfigs="" data-form="" data-checker="&quot;&quot;" data-packages="[]" data-response="" data-embed-response="false" data-partial-credit="false" data-form-credit="0.5" data-field-labels="[&quot;P(B←B′) 11&quot;,&quot;P(B←B′) 12&quot;,&quot;P(B←B′) 21&quot;,&quot;P(B←B′) 22&quot;,&quot;P(B′←B) 11&quot;,&quot;P(B′←B) 12&quot;,&quot;P(B′←B) 21&quot;,&quot;P(B′←B) 22&quot;]" data-vecdir="col" data-feedback-policy="{&quot;exercise&quot;:&quot;uke04-opp2a-overgang&quot;,&quot;name&quot;:&quot;&quot;}" data-context-mode="explicit" data-context-refs="uke04-matrise-context, uke04-opp2-context" data-context="&quot;Oppgave 2 – overgangsmatriser i \\(\\mathbb{R}^2\\)&quot;" data-fields="[&quot;math-exercise-3-f1&quot;,&quot;math-exercise-3-f2&quot;,&quot;math-exercise-3-f3&quot;,&quot;math-exercise-3-f4&quot;,&quot;math-exercise-3-f5&quot;,&quot;math-exercise-3-f6&quot;,&quot;math-exercise-3-f7&quot;,&quot;math-exercise-3-f8&quot;]" data-structural-field-labels="[&quot;m1,1&quot;,&quot;m1,2&quot;,&quot;m2,1&quot;,&quot;m2,2&quot;,&quot;m1,1&quot;,&quot;m1,2&quot;,&quot;m2,1&quot;,&quot;m2,2&quot;]">
+<div class="math-exercise-caption math-exercise-toggle" data-math-exercise-source="Overgangsmatrisene begge veier" role="button" tabindex="0" aria-expanded="false"><span class="math-chevron" aria-hidden="true"></span>Overgangsmatrisene begge veier</div>
+
+<div class="math-exercise-body" aria-hidden="true">
+<div class="math-exercise-question" data-math-exercise-source="\(P_{\mathcal{B}\leftarrow\mathcal{B}'}=\) <span class=&quot;math-mat&quot; style=&quot;--cols:2&quot;><input type=&quot;text&quot; id=&quot;math-exercise-3-f1&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-3-f2&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-3-f3&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-3-f4&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;></span><br>
+<br>
+\(P_{\mathcal{B}'\leftarrow\mathcal{B}}=\) <span class=&quot;math-mat&quot; style=&quot;--cols:2&quot;><input type=&quot;text&quot; id=&quot;math-exercise-3-f5&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-3-f6&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-3-f7&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-3-f8&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;></span>">\(P_{\mathcal{B}\leftarrow\mathcal{B}'}=\) <span class="math-mat" style="--cols:2"><input type="text" id="math-exercise-3-f1" data-answer="1" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-3-f2" data-answer="-1" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-3-f3" data-answer="1" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-3-f4" data-answer="1" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"></span><br>
+<br>
+\(P_{\mathcal{B}'\leftarrow\mathcal{B}}=\) <span class="math-mat" style="--cols:2"><input type="text" id="math-exercise-3-f5" data-answer="1/2" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-3-f6" data-answer="1/2" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-3-f7" data-answer="-1/2" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-3-f8" data-answer="1/2" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"></span></div>
+
+<div class="math-exercise-controls">
+  <button type="button" class="btn btn-primary math-check-btn">✓&nbsp;Sjekk</button>
+  <button type="button" class="btn btn-light math-legend-btn">ⓘ&nbsp;Inntastingshjelp</button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-light math-feedback-btn">💬&nbsp;Tilbakemelding</button>
+    <button type="button" class="btn btn-light math-reconfig-btn" title="Endre KI-oppsett">⚙</button>
+  </div>
+</div>
+<div class="math-legend-panel" style="display:none;"></div>
+<div class="math-feedback-area"></div>
+</div>
+</div>
+<div class="math-exercise-cell" id="math-exercise-4" data-label="uke04-opp2b-koordinater" data-mode="equivalent" data-reject="" data-vars="" data-tolerance="" data-decplaces="" data-sigfigs="" data-form="" data-checker="&quot;&quot;" data-packages="[]" data-response="" data-embed-response="false" data-partial-credit="false" data-form-credit="0.5" data-field-labels="[&quot;v i standardkoordinater 1&quot;,&quot;v i standardkoordinater 2&quot;,&quot;w i B′-koordinater 1&quot;,&quot;w i B′-koordinater 2&quot;]" data-vecdir="col" data-feedback-policy="{&quot;exercise&quot;:&quot;uke04-opp2b-koordinater&quot;,&quot;name&quot;:&quot;&quot;}" data-context-mode="explicit" data-context-refs="uke04-matrise-context, uke04-opp2-context" data-context="&quot;Oppgave 2 – overgangsmatriser i \\(\\mathbb{R}^2\\)&quot;" data-fields="[&quot;math-exercise-4-f1&quot;,&quot;math-exercise-4-f2&quot;,&quot;math-exercise-4-f3&quot;,&quot;math-exercise-4-f4&quot;]" data-structural-field-labels="[&quot;v1&quot;,&quot;v2&quot;,&quot;v1&quot;,&quot;v2&quot;]">
+<div class="math-exercise-caption math-exercise-toggle" data-math-exercise-source="Bruk overgangsmatrisene" role="button" tabindex="0" aria-expanded="false"><span class="math-chevron" aria-hidden="true"></span>Bruk overgangsmatrisene</div>
+
+<div class="math-exercise-body" aria-hidden="true">
+<div class="math-exercise-question" data-math-exercise-source="Vektoren \(v\) har \([v]_{\mathcal{B}'}=(3,2)\), og vektoren \(w=(5,1)\) er gitt i standardkoordinater. Finn<br>
+<br>
+\([v]_{\mathcal{B}}=\) <span class=&quot;math-vec&quot; style=&quot;--n:2&quot;><input type=&quot;text&quot; id=&quot;math-exercise-4-f1&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-4-f2&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;></span><br>
+<br>
+\([w]_{\mathcal{B}'}=\) <span class=&quot;math-vec&quot; style=&quot;--n:2&quot;><input type=&quot;text&quot; id=&quot;math-exercise-4-f3&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-4-f4&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;></span>">Vektoren \(v\) har \([v]_{\mathcal{B}'}=(3,2)\), og vektoren \(w=(5,1)\) er gitt i standardkoordinater. Finn<br>
+<br>
+\([v]_{\mathcal{B}}=\) <span class="math-vec" style="--n:2"><input type="text" id="math-exercise-4-f1" data-answer="1" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-4-f2" data-answer="5" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"></span><br>
+<br>
+\([w]_{\mathcal{B}'}=\) <span class="math-vec" style="--n:2"><input type="text" id="math-exercise-4-f3" data-answer="3" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-4-f4" data-answer="-2" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"></span></div>
+
+<div class="math-exercise-controls">
+  <button type="button" class="btn btn-primary math-check-btn">✓&nbsp;Sjekk</button>
+  <button type="button" class="btn btn-light math-legend-btn">ⓘ&nbsp;Inntastingshjelp</button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-light math-feedback-btn">💬&nbsp;Tilbakemelding</button>
+    <button type="button" class="btn btn-light math-reconfig-btn" title="Endre KI-oppsett">⚙</button>
+  </div>
+</div>
+<div class="math-legend-panel" style="display:none;"></div>
+<div class="math-feedback-area"></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Løsningsforslag til oppgave 2">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tips</span>Løsningsforslag til oppgave 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Kolonnene i <span class="math inline">\(P_{\mathcal{B}\leftarrow\mathcal{B}'}\)</span> er <span class="math inline">\(\mathcal{B}'\)</span>-vektorene skrevet i standardkoordinater:</p>
+<p><span class="math display">\[
+P_{\mathcal{B}\leftarrow\mathcal{B}'}=\begin{pmatrix}1&amp;-1\\1&amp;1\end{pmatrix},
+\qquad
+P_{\mathcal{B}'\leftarrow\mathcal{B}}=P_{\mathcal{B}\leftarrow\mathcal{B}'}^{-1}
+=\frac12\begin{pmatrix}1&amp;1\\-1&amp;1\end{pmatrix}.
+\]</span></p>
+<p>(Inversen til <span class="math inline">\(\begin{pmatrix}a&amp;b\\c&amp;d\end{pmatrix}\)</span> er <span class="math inline">\(\frac{1}{ad-bc}\begin{pmatrix}d&amp;-b\\-c&amp;a\end{pmatrix}\)</span>, her med <span class="math inline">\(ad-bc=2\)</span>.)</p>
+<p>Koordinater: <span class="math inline">\([v]_{\mathcal{B}}=\begin{pmatrix}1&amp;-1\\1&amp;1\end{pmatrix}\begin{pmatrix}3\\2\end{pmatrix}=\begin{pmatrix}1\\5\end{pmatrix}\)</span>, som stemmer med <span class="math inline">\(3(1,1)+2(-1,1)=(1,5)\)</span>. Og <span class="math inline">\([w]_{\mathcal{B}'}=\frac12\begin{pmatrix}1&amp;1\\-1&amp;1\end{pmatrix}\begin{pmatrix}5\\1\end{pmatrix}=\begin{pmatrix}3\\-2\end{pmatrix}\)</span>; kontroll: <span class="math inline">\(3(1,1)-2(-1,1)=(5,1)\)</span>.</p>
+<p><strong>Konklusjon fra flervalgsversjonen:</strong> (ii) fra <span class="math inline">\(\mathcal{B}'\)</span> til <span class="math inline">\(\mathcal{B}\)</span> og (i) fra <span class="math inline">\(\mathcal{B}\)</span> til <span class="math inline">\(\mathcal{B}'\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="oppgave-3-prikkproduktet-som-matriseprodukt" class="level3">
+<h3 class="anchored" data-anchor-id="oppgave-3-prikkproduktet-som-matriseprodukt">Oppgave 3 – prikkproduktet som matriseprodukt</h3>
+<div id="uke04-opp3-context" class="math-exercise-context">
+<p>Vi tenker på vektorer i <span data-ai-feedback-tex="\mathbb{R}^n" data-ai-feedback-display="false"><span class="math inline">\(\mathbb{R}^n\)</span></span> som kolonnevektorer og <em>definerer</em> <span data-ai-feedback-tex="x\cdot y=x^Ty" data-ai-feedback-display="false"><span class="math inline">\(x\cdot y=x^Ty\)</span></span> (matrisemultiplikasjon av en <span data-ai-feedback-tex="1\times n" data-ai-feedback-display="false"><span class="math inline">\(1\times n\)</span></span>- og en <span data-ai-feedback-tex="n\times1" data-ai-feedback-display="false"><span class="math inline">\(n\times1\)</span></span>-matrise). Spørsmålet er hvilke regneregler for vektorer som da følger direkte av regnereglene for matriser: <span data-ai-feedback-tex="A(B\pm C)=AB\pm AC" data-ai-feedback-display="false"><span class="math inline">\(A(B\pm C)=AB\pm AC\)</span></span>, <span data-ai-feedback-tex="(A\pm B)C=AC\pm BC" data-ai-feedback-display="false"><span class="math inline">\((A\pm B)C=AC\pm BC\)</span></span>, <span data-ai-feedback-tex="(AB)C=A(BC)" data-ai-feedback-display="false"><span class="math inline">\((AB)C=A(BC)\)</span></span>, <span data-ai-feedback-tex="A+B=B+A" data-ai-feedback-display="false"><span class="math inline">\(A+B=B+A\)</span></span>, <span data-ai-feedback-tex="A+(B+C)=(A+B)+C" data-ai-feedback-display="false"><span class="math inline">\(A+(B+C)=(A+B)+C\)</span></span> og <span data-ai-feedback-tex="A(aC)=(aA)C=a(AC)" data-ai-feedback-display="false"><span class="math inline">\(A(aC)=(aA)C=a(AC)\)</span></span>, og hva vi i tillegg får med reglene <span data-ai-feedback-tex="(tA)^T=tA^T" data-ai-feedback-display="false"><span class="math inline">\((tA)^T=tA^T\)</span></span> og <span data-ai-feedback-tex="(AB)^T=B^TA^T" data-ai-feedback-display="false"><span class="math inline">\((AB)^T=B^TA^T\)</span></span>.</p>
+</div>
+<div class="math-exercise-cell" id="math-exercise-5" data-label="uke04-opp3-produkt" data-mode="equivalent" data-reject="" data-vars="" data-tolerance="" data-decplaces="" data-sigfigs="" data-form="" data-checker="&quot;&quot;" data-packages="[]" data-response="" data-embed-response="false" data-partial-credit="false" data-form-credit="0.5" data-field-labels="[&quot;aᵀb&quot;,&quot;bᵀa&quot;,&quot;(abᵀ)₁₁&quot;,&quot;(abᵀ)₁₂&quot;,&quot;(abᵀ)₁₃&quot;,&quot;(abᵀ)₂₁&quot;,&quot;(abᵀ)₂₂&quot;,&quot;(abᵀ)₂₃&quot;,&quot;(abᵀ)₃₁&quot;,&quot;(abᵀ)₃₂&quot;,&quot;(abᵀ)₃₃&quot;]" data-vecdir="col" data-feedback-policy="{&quot;exercise&quot;:&quot;uke04-opp3-produkt&quot;,&quot;name&quot;:&quot;&quot;}" data-context-mode="explicit" data-context-refs="uke04-matrise-context, uke04-opp3-context" data-context="&quot;Oppgave 3 – prikkproduktet som matriseprodukt&quot;" data-fields="[&quot;math-exercise-5-f1&quot;,&quot;math-exercise-5-f2&quot;,&quot;math-exercise-5-f3&quot;,&quot;math-exercise-5-f4&quot;,&quot;math-exercise-5-f5&quot;,&quot;math-exercise-5-f6&quot;,&quot;math-exercise-5-f7&quot;,&quot;math-exercise-5-f8&quot;,&quot;math-exercise-5-f9&quot;,&quot;math-exercise-5-f10&quot;,&quot;math-exercise-5-f11&quot;]" data-structural-field-labels="[&quot;&quot;,&quot;&quot;,&quot;m1,1&quot;,&quot;m1,2&quot;,&quot;m1,3&quot;,&quot;m2,1&quot;,&quot;m2,2&quot;,&quot;m2,3&quot;,&quot;m3,1&quot;,&quot;m3,2&quot;,&quot;m3,3&quot;]">
+<div class="math-exercise-caption math-exercise-toggle" data-math-exercise-source="aᵀb, bᵀa og abᵀ" role="button" tabindex="0" aria-expanded="false"><span class="math-chevron" aria-hidden="true"></span>aᵀb, bᵀa og abᵀ</div>
+
+<div class="math-exercise-body" aria-hidden="true">
+<div class="math-exercise-question" data-math-exercise-source="La \(a=(1,2,-1)^T\) og \(b=(3,0,2)^T\). Regn ut produktene. Legg merke til hvilke som er tall og hvilke som er matriser.<br>
+<br>
+\(a^Tb=\) <input type=&quot;text&quot; id=&quot;math-exercise-5-f1&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-input-small&quot;><br>
+\(b^Ta=\) <input type=&quot;text&quot; id=&quot;math-exercise-5-f2&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-input-small&quot;><br>
+\(ab^T=\) <span class=&quot;math-mat&quot; style=&quot;--cols:3&quot;><input type=&quot;text&quot; id=&quot;math-exercise-5-f3&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-5-f4&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-5-f5&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-5-f6&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-5-f7&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-5-f8&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-5-f9&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-5-f10&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-5-f11&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;></span>">La \(a=(1,2,-1)^T\) og \(b=(3,0,2)^T\). Regn ut produktene. Legg merke til hvilke som er tall og hvilke som er matriser.<br>
+<br>
+\(a^Tb=\) <input type="text" id="math-exercise-5-f1" data-answer="1" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-input-small"><br>
+\(b^Ta=\) <input type="text" id="math-exercise-5-f2" data-answer="1" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-input-small"><br>
+\(ab^T=\) <span class="math-mat" style="--cols:3"><input type="text" id="math-exercise-5-f3" data-answer="3" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-5-f4" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-5-f5" data-answer="2" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-5-f6" data-answer="6" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-5-f7" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-5-f8" data-answer="4" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-5-f9" data-answer="-3" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-5-f10" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-5-f11" data-answer="-2" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"></span></div>
+
+<div class="math-exercise-controls">
+  <button type="button" class="btn btn-primary math-check-btn">✓&nbsp;Sjekk</button>
+  <button type="button" class="btn btn-light math-legend-btn">ⓘ&nbsp;Inntastingshjelp</button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-light math-feedback-btn">💬&nbsp;Tilbakemelding</button>
+    <button type="button" class="btn btn-light math-reconfig-btn" title="Endre KI-oppsett">⚙</button>
+  </div>
+</div>
+<div class="math-legend-panel" style="display:none;"></div>
+<div class="math-feedback-area"></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Løsningsforslag og diskusjon til oppgave 3">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tips</span>Løsningsforslag og diskusjon til oppgave 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(a^Tb=3+0-2=1\)</span> og <span class="math inline">\(b^Ta=1\)</span>, mens <span class="math inline">\(ab^T\)</span> er en <span class="math inline">\(3\times3\)</span>-matrise. At <span class="math inline">\(a^Tb=b^Ta\)</span> er ikke en matriseregel (<span class="math inline">\(AB\neq BA\)</span> generelt), men følger av transponeringsregelen: <span class="math inline">\(a^Tb\)</span> er en <span class="math inline">\(1\times1\)</span>-matrise, så <span class="math inline">\(a^Tb=(a^Tb)^T=b^T(a^T)^T=b^Ta\)</span>.</p>
+<p><strong>Diskusjon.</strong> Reglene (1)–(3) for vektoraddisjon og skalarmultiplikasjon er reglene for matriser brukt på <span class="math inline">\(n\times1\)</span>-matriser. Distributive lover og skalarregler for prikkproduktet ((4)–(5)) følger av <span class="math inline">\(A(B\pm C)=AB\pm AC\)</span>, <span class="math inline">\((A\pm B)C=AC\pm BC\)</span> og <span class="math inline">\(A(aC)=(aA)C=a(AC)\)</span> — der vi bruker at <span class="math inline">\((ta)^T=ta^T\)</span> og <span class="math inline">\((a+b)^T=a^T+b^T\)</span> (det siste regnes vanligvis som selvsagt). Med <span class="math inline">\((AB)^T=B^TA^T\)</span> får vi i tillegg symmetrien <span class="math inline">\(a\cdot b=b\cdot a\)</span> i (6), og dermed <span class="math inline">\(|ta|=\sqrt{t^2\,a\cdot a}=|t||a|\)</span> i (7). Ulikhetene (8) Cauchy–Schwarz og (9) trekantulikheten følger <strong>ikke</strong> av noen regneregler for matriser: de krever et eget argument (B1 Sek 4.1).</p>
+<p><strong>Konklusjon fra fasiten:</strong> regnereglene for matriser gir (ii), altså (1)–(5); med reglene for transponerte kommer (6) og (7) i tillegg.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="oppgave-4-regning-med-vektorer-og-projeksjon" class="level3">
+<h3 class="anchored" data-anchor-id="oppgave-4-regning-med-vektorer-og-projeksjon">Oppgave 4 – regning med vektorer og projeksjon</h3>
+<div id="uke04-opp4-context" class="math-exercise-context">
+<p>La <span data-ai-feedback-tex="u=(1,-2,3)" data-ai-feedback-display="false"><span class="math inline">\(u=(1,-2,3)\)</span></span> og <span data-ai-feedback-tex="v=(2,-1,-3)" data-ai-feedback-display="false"><span class="math inline">\(v=(2,-1,-3)\)</span></span> i <span data-ai-feedback-tex="\mathbb{R}^3" data-ai-feedback-display="false"><span class="math inline">\(\mathbb{R}^3\)</span></span>, og la <span data-ai-feedback-tex="\theta" data-ai-feedback-display="false"><span class="math inline">\(\theta\)</span></span> være vinkelen mellom <span data-ai-feedback-tex="u" data-ai-feedback-display="false"><span class="math inline">\(u\)</span></span> og <span data-ai-feedback-tex="v" data-ai-feedback-display="false"><span class="math inline">\(v\)</span></span>. Projeksjonen av <span data-ai-feedback-tex="u" data-ai-feedback-display="false"><span class="math inline">\(u\)</span></span> på <span data-ai-feedback-tex="v" data-ai-feedback-display="false"><span class="math inline">\(v\)</span></span> er <span data-ai-feedback-tex="tv" data-ai-feedback-display="false"><span class="math inline">\(tv\)</span></span>, der <span data-ai-feedback-tex="t" data-ai-feedback-display="false"><span class="math inline">\(t\)</span></span> er valgt slik at <span data-ai-feedback-tex="(u-tv)\cdot v=0" data-ai-feedback-display="false"><span class="math inline">\((u-tv)\cdot v=0\)</span></span>.</p>
+</div>
+<section id="a-grunnleggende-regning" class="level4">
+<h4 class="anchored" data-anchor-id="a-grunnleggende-regning">a) Grunnleggende regning</h4>
+<div class="math-exercise-cell" id="math-exercise-6" data-label="uke04-opp4a-regning" data-mode="equivalent" data-reject="" data-vars="" data-tolerance="" data-decplaces="" data-sigfigs="" data-form="" data-checker="&quot;&quot;" data-packages="[]" data-response="" data-embed-response="false" data-partial-credit="false" data-form-credit="0.5" data-field-labels="[&quot;(u+v)₁&quot;,&quot;(u+v)₂&quot;,&quot;(u+v)₃&quot;,&quot;(2u−v)₁&quot;,&quot;(2u−v)₂&quot;,&quot;(2u−v)₃&quot;,&quot;u·v&quot;]" data-vecdir="col" data-feedback-policy="{&quot;exercise&quot;:&quot;uke04-opp4a-regning&quot;,&quot;name&quot;:&quot;&quot;}" data-context-mode="explicit" data-context-refs="uke04-matrise-context, uke04-opp4-context" data-context="&quot;a) Grunnleggende regning&quot;" data-fields="[&quot;math-exercise-6-f1&quot;,&quot;math-exercise-6-f2&quot;,&quot;math-exercise-6-f3&quot;,&quot;math-exercise-6-f4&quot;,&quot;math-exercise-6-f5&quot;,&quot;math-exercise-6-f6&quot;,&quot;math-exercise-6-f7&quot;]" data-structural-field-labels="[&quot;v1&quot;,&quot;v2&quot;,&quot;v3&quot;,&quot;v1&quot;,&quot;v2&quot;,&quot;v3&quot;,&quot;&quot;]">
+<div class="math-exercise-caption math-exercise-toggle" data-math-exercise-source="Sum, lineærkombinasjon og prikkprodukt" role="button" tabindex="0" aria-expanded="false"><span class="math-chevron" aria-hidden="true"></span>Sum, lineærkombinasjon og prikkprodukt</div>
+
+<div class="math-exercise-body" aria-hidden="true">
+<div class="math-exercise-question" data-math-exercise-source="\(u+v=\) <span class=&quot;math-vec&quot; style=&quot;--n:3&quot;><input type=&quot;text&quot; id=&quot;math-exercise-6-f1&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-6-f2&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-6-f3&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;></span><br>
+<br>
+\(2u-v=\) <span class=&quot;math-vec&quot; style=&quot;--n:3&quot;><input type=&quot;text&quot; id=&quot;math-exercise-6-f4&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-6-f5&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;><input type=&quot;text&quot; id=&quot;math-exercise-6-f6&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-mat-cell&quot;></span><br>
+<br>
+\(u\cdot v=\) <input type=&quot;text&quot; id=&quot;math-exercise-6-f7&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-input-small&quot;>">\(u+v=\) <span class="math-vec" style="--n:3"><input type="text" id="math-exercise-6-f1" data-answer="3" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-6-f2" data-answer="-3" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-6-f3" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"></span><br>
+<br>
+\(2u-v=\) <span class="math-vec" style="--n:3"><input type="text" id="math-exercise-6-f4" data-answer="0" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-6-f5" data-answer="-3" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"><input type="text" id="math-exercise-6-f6" data-answer="9" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-mat-cell"></span><br>
+<br>
+\(u\cdot v=\) <input type="text" id="math-exercise-6-f7" data-answer="-5" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-input-small"></div>
+
+<div class="math-exercise-controls">
+  <button type="button" class="btn btn-primary math-check-btn">✓&nbsp;Sjekk</button>
+  <button type="button" class="btn btn-light math-legend-btn">ⓘ&nbsp;Inntastingshjelp</button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-light math-feedback-btn">💬&nbsp;Tilbakemelding</button>
+    <button type="button" class="btn btn-light math-reconfig-btn" title="Endre KI-oppsett">⚙</button>
+  </div>
+</div>
+<div class="math-legend-panel" style="display:none;"></div>
+<div class="math-feedback-area"></div>
+</div>
+</div>
+</section>
+<section id="b-lengden-til-projeksjonen" class="level4">
+<h4 class="anchored" data-anchor-id="b-lengden-til-projeksjonen">b) Lengden til projeksjonen</h4>
+<div class="math-exercise-cell" id="math-exercise-7" data-label="uke04-opp4b-projeksjon" data-mode="equivalent" data-reject="" data-vars="" data-tolerance="" data-decplaces="" data-sigfigs="" data-form="" data-checker="&quot;&quot;" data-packages="[]" data-response="" data-embed-response="false" data-partial-credit="false" data-form-credit="0.5" data-field-labels="[&quot;t&quot;,&quot;|tv|&quot;,&quot;|u||cos θ|&quot;]" data-vecdir="col" data-feedback-policy="{&quot;exercise&quot;:&quot;uke04-opp4b-projeksjon&quot;,&quot;name&quot;:&quot;&quot;}" data-context-mode="explicit" data-context-refs="uke04-matrise-context, uke04-opp4-context" data-context="&quot;b) Lengden til projeksjonen&quot;" data-fields="[&quot;math-exercise-7-f1&quot;,&quot;math-exercise-7-f2&quot;,&quot;math-exercise-7-f3&quot;]" data-structural-field-labels="[&quot;&quot;,&quot;&quot;,&quot;&quot;]">
+<div class="math-exercise-caption math-exercise-toggle" data-math-exercise-source="Projeksjon og cos θ" role="button" tabindex="0" aria-expanded="false"><span class="math-chevron" aria-hidden="true"></span>Projeksjon og cos θ</div>
+
+<div class="math-exercise-body" aria-hidden="true">
+<div class="math-exercise-question" data-math-exercise-source="Finn \(t\), og regn ut både \(|tv|\) og \(|u|\,|\cos\theta|\) eksakt (skriv kvadratrøtter som <code>sqrt(...)</code>).<br>
+<br>
+\(t=\) <input type=&quot;text&quot; id=&quot;math-exercise-7-f1&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-input-small&quot;><br>
+\(|tv|=\) <input type=&quot;text&quot; id=&quot;math-exercise-7-f2&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-input-medium&quot;><br>
+\(|u|\,|\cos\theta|=\) <input type=&quot;text&quot; id=&quot;math-exercise-7-f3&quot; data-vars=&quot;&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot; spellcheck=&quot;false&quot; class=&quot;math-input math-input-medium&quot;>">Finn \(t\), og regn ut både \(|tv|\) og \(|u|\,|\cos\theta|\) eksakt (skriv kvadratrøtter som <code>sqrt(...)</code>).<br>
+<br>
+\(t=\) <input type="text" id="math-exercise-7-f1" data-answer="-5/14" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-input-small"><br>
+\(|tv|=\) <input type="text" id="math-exercise-7-f2" data-answer="5/sqrt(14)" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-input-medium"><br>
+\(|u|\,|\cos\theta|=\) <input type="text" id="math-exercise-7-f3" data-answer="5/sqrt(14)" data-vars="" autocomplete="off" autocorrect="off" spellcheck="false" class="math-input math-input-medium"></div>
+
+<div class="math-exercise-controls">
+  <button type="button" class="btn btn-primary math-check-btn">✓&nbsp;Sjekk</button>
+  <button type="button" class="btn btn-light math-legend-btn">ⓘ&nbsp;Inntastingshjelp</button>
+  <div class="btn-group">
+    <button type="button" class="btn btn-light math-feedback-btn">💬&nbsp;Tilbakemelding</button>
+    <button type="button" class="btn btn-light math-reconfig-btn" title="Endre KI-oppsett">⚙</button>
+  </div>
+</div>
+<div class="math-legend-panel" style="display:none;"></div>
+<div class="math-feedback-area"></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Løsningsforslag til oppgave 4">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tips</span>Løsningsforslag til oppgave 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>a)</strong> <span class="math inline">\(u+v=(3,-3,0)\)</span>, <span class="math inline">\(2u-v=(2-2,-4+1,6+3)=(0,-3,9)\)</span> og <span class="math inline">\(u\cdot v=2+2-9=-5\)</span>. (Flervalgsversjonen hadde <span class="math inline">\(2u-v=(-1,-3,9)\)</span>, som er feil i første komponent.)</p>
+<p><strong>b)</strong> <span class="math inline">\((u-tv)\cdot v=0\)</span> gir <span class="math inline">\(u\cdot v-t\,v\cdot v=0\)</span>, altså</p>
+<p><span class="math display">\[
+t=\frac{u\cdot v}{v\cdot v}=\frac{-5}{14}.
+\]</span></p>
+<p>Da er <span class="math inline">\(|tv|=|t|\,|v|=\dfrac{5}{14}\sqrt{14}=\dfrac{5}{\sqrt{14}}\)</span>. Siden <span class="math inline">\(\cos\theta=\dfrac{u\cdot v}{|u||v|}\)</span>, er</p>
+<p><span class="math display">\[
+|u|\,|\cos\theta|=\frac{|u\cdot v|}{|v|}=\frac{5}{\sqrt{14}}.
+\]</span></p>
+<p>Dette gjelder generelt: <span class="math inline">\(|tv|=\dfrac{|u\cdot v|}{|v|^2}|v|=|u|\,|\cos\theta|\)</span>. Lengden av projeksjonen er lengden av den «skyggen» <span class="math inline">\(u\)</span> kaster på linjen gjennom <span class="math inline">\(v\)</span>.</p>
+<p><strong>Konklusjon fra flervalgsversjonen:</strong> (ii) er regnet feil, og <span class="math inline">\(|tv|=|u||\cos\theta|\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+</div>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script>
+// Shared fragment navigation for all Quarto pages, including Back/Forward.
+(() => {
+  const key = '__quartoTabPosition';
+  let navigation = 0, restoring = false, scrollTimer;
+  let handledURL = location.href;
+  history.scrollRestoration = 'manual';
+
+  function targetFor(hash) {
+    if (!hash || hash === '#') return null;
+    try { return document.getElementById(decodeURIComponent(hash.slice(1))); }
+    catch (_) { return null; }
+  }
+  function ancestors(target) {
+    const panes = [];
+    for (let el = target; el; el = el.parentElement) {
+      if (el.classList.contains('tab-pane')) panes.unshift(el);
+    }
+    return panes;
+  }
+  function snapshot() {
+    return { x: window.scrollX, y: window.scrollY,
+      panes: Array.from(document.querySelectorAll('.tab-pane.active'), el => el.id) };
+  }
+  function save() {
+    if (restoring) return;
+    const state = history.state;
+    // Preserve state owned by Quarto or other shared scripts.
+    history.replaceState({ ...(state && typeof state === 'object' ? state : {}),
+      [key]: snapshot() }, '', location.href);
+  }
+  function open(pane) {
+    if (pane.classList.contains('active')) return Promise.resolve();
+    const tab = document.getElementById(pane.getAttribute('aria-labelledby'));
+    if (!tab || !window.bootstrap?.Tab) return Promise.resolve();
+    return new Promise(resolve => {
+      tab.addEventListener('shown.bs.tab', resolve, { once: true });
+      window.bootstrap.Tab.getOrCreateInstance(tab).show();
+    });
+  }
+  const frame = () => new Promise(resolve => requestAnimationFrame(resolve));
+  async function navigate(position, target) {
+    const request = ++navigation;
+    restoring = true;
+    clearTimeout(scrollTimer);
+    // DOM order puts outer tab panes before nested ones.
+    const panes = position ? position.panes.map(id => document.getElementById(id)).filter(Boolean)
+      : target ? ancestors(target) : [];
+    for (const pane of panes) {
+      if (request !== navigation) return;
+      await open(pane);
+    }
+    if (request !== navigation) return;
+    window.dispatchEvent(new Event('resize'));
+    await frame(); await frame();
+    if (request !== navigation) return;
+    if (position) {
+      window.scrollTo({ left: position.x, top: position.y, behavior: 'instant' });
+    } else if (target && target.getClientRects().length) {
+      const header = document.getElementById('quarto-header');
+      const clearance = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      window.scrollTo({ top: Math.max(0, window.scrollY + target.getBoundingClientRect().top - clearance - 16), behavior: 'instant' });
+    }
+    await frame();
+    if (request !== navigation) return;
+    restoring = false;
+    save();
+  }
+  document.addEventListener('click', event => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest?.('a[href]');
+    if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+    save();
+    if (link.getAttribute('role') === 'tab') return;
+    const url = new URL(link.href, location.href);
+    if (url.origin !== location.origin || url.pathname !== location.pathname || url.search !== location.search) return;
+    const target = targetFor(url.hash);
+    if (!target || !window.bootstrap?.Tab) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (location.hash !== url.hash) history.pushState(null, '', url.hash);
+    handledURL = location.href;
+    void navigate(null, target);
+  }, true);
+
+  window.addEventListener('scroll', () => {
+    if (restoring) return;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(save, 100);
+  }, { passive: true });
+  document.addEventListener('shown.bs.tab', () => { if (!restoring) save(); });
+  window.addEventListener('pagehide', save);
+  window.addEventListener('popstate', event => {
+    handledURL = location.href;
+    void navigate(event.state?.[key] || null, targetFor(location.hash));
+  });
+  window.addEventListener('hashchange', () => {
+    // Back/Forward emits popstate and then hashchange: restore only once.
+    if (handledURL === location.href) return;
+    handledURL = location.href;
+    void navigate(null, targetFor(location.hash));
+  });
+  window.addEventListener('pageshow', () => {
+    handledURL = location.href;
+    void navigate(history.state?.[key] || null, targetFor(location.hash));
+  });
+})();
+</script>
+<script>
+(() => {
+  function init() {
+    const controls = document.querySelector('[data-learning-mode]');
+    if (!controls) return;
+    const steps = [...document.querySelectorAll('details.reading-step')];
+    const buttons = [...controls.querySelectorAll('button[data-mode]')];
+    const status = controls.querySelector('[role="status"]');
+    function select(mode) {
+      steps.forEach(step => { step.open = mode === 'reading'; });
+      buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mode === mode)));
+      status.textContent = mode === 'reading'
+        ? (controls.dataset.readingLabel || 'Gå i dybden') + ': prøv selv, og følg forklaringene steg for steg.'
+        : (controls.dataset.lectureLabel || 'Forelesning') + (controls.dataset.lectureLabel ? ': prøv oppgavene før du åpner forklaringene.' : ': eksperimenter og diskusjon. Åpne utdypningene ved behov.');
+      try { sessionStorage.setItem('learning-mode', mode); } catch (_) {}
+      window.dispatchEvent(new Event('resize'));
+    }
+    buttons.forEach(button => button.addEventListener('click', () => select(button.dataset.mode)));
+    let initial = 'lecture';
+    try { initial = sessionStorage.getItem('learning-mode') || initial; } catch (_) {}
+    select(initial === 'reading' ? 'reading' : 'lecture');
+    // A direct link into a closed explanation must still reveal its target.
+    function revealTarget() {
+      let target;
+      try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (_) { return; }
+      for (let node = target; node; node = node.parentElement) {
+        if (node.matches('details')) node.open = true;
+      }
+    }
+    window.addEventListener('hashchange', revealTarget);
+    revealTarget();
+    const beforePrint = new Map();
+    window.addEventListener('beforeprint', () => {
+      steps.forEach(step => { beforePrint.set(step, step.open); step.open = true; });
+    });
+    window.addEventListener('afterprint', () => {
+      beforePrint.forEach((open, step) => { step.open = open; });
+      beforePrint.clear();
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/TobyJavascript\.github\.io\/2027v-TMA4411\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../pages/uke03.html" class="pagination-link" aria-label="Uke 3 – Lineærtransformasjoner I">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Uke 3 – Lineærtransformasjoner I</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../pages/uke05.html" class="pagination-link" aria-label="Uke 5 – Indreproduktrom I">
+        <span class="nav-page-text">Uke 5 – Indreproduktrom I</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>TMA4411 Matematikk 2B · NTNU · våren 2027 (utkast)</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-contrib/math-exercise-0.11.0/matrix-input.js"></script>
+<script src="../site_libs/quarto-contrib/math-exercise-0.11.0/math-exercise.js"></script>
+</body></html>

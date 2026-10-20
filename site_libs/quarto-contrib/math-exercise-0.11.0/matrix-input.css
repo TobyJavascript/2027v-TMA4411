@@ -1,0 +1,181 @@
+/* Matrix input presentation; also retained for legacy scalar/vector inputs.
+ * SPDX-License-Identifier: AGPL-3.0-or-later */
+/* ---- Input fields ---- */
+.math-input {
+  font-family: 'Fira Mono', 'Consolas', 'Courier New', monospace;
+  font-size: .92em;
+  padding: .3em .55em;
+  border: 1px solid var(--bs-border-color, #adb5bd);
+  border-radius: .3em;
+  background: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  vertical-align: middle;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.math-input:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, .18);
+}
+
+.math-input-small  { width: 10em; }
+.math-input-medium { width: 20em; }
+
+.math-input-large {
+  display: block;
+  width: 100%;
+  margin: .35em 0;
+  resize: vertical;
+  min-height: 4em;
+}
+
+/* ---- Vector and matrix input (vec[...] / mat[...]) ---- */
+.math-vec,
+.math-mat {
+  display: inline-grid;
+  gap: .3em;
+  padding: .38em 1em;
+  margin: .15em .2em;
+  position: relative;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.math-mat { grid-template-columns: repeat(var(--cols), minmax(2.8em, auto)); }
+.math-vec { grid-template-columns: minmax(2.8em, auto); }
+.math-vec.math-vec-row { grid-template-columns: repeat(var(--n), minmax(2.8em, auto)); }
+
+.math-vec::before,
+.math-vec::after,
+.math-mat::before,
+.math-mat::after {
+  content: '';
+  position: absolute;
+  top: .12em;
+  bottom: .12em;
+  width: .5em;
+  border: 2px solid currentColor;
+  pointer-events: none;
+}
+
+.math-vec::before,
+.math-mat::before { left: 0; border-right: none; }
+.math-vec::after,
+.math-mat::after { right: 0; border-left: none; }
+
+.math-mat-cell {
+  box-sizing: border-box;
+  width: 3.4em;
+  min-width: 0;
+  padding: .3em;
+  text-align: center;
+}
+
+.math-dynamic-matrix-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.math-dynamic-mat {
+  min-width: 2.6em;
+  min-height: 2.6em;
+  overflow-x: auto;
+}
+
+.math-dynamic-matrix-empty {
+  grid-column: 1;
+  align-self: center;
+  color: var(--bs-secondary-color, #6c757d);
+  font-size: .82em;
+  white-space: nowrap;
+}
+
+.math-dynamic-matrix-controls {
+  display: grid;
+  gap: .32em;
+  margin-top: .3em;
+  min-width: 9.5em;
+}
+
+.math-dynamic-axis {
+  display: grid;
+  grid-template-columns: minmax(4.5em, 1fr) 2em 2em 2em;
+  align-items: center;
+  gap: .2em;
+}
+
+.math-dynamic-axis-label {
+  color: var(--bs-secondary-color, #495057);
+  font-size: .76em;
+  text-align: left;
+}
+
+.math-dynamic-axis output {
+  font-variant-numeric: tabular-nums;
+  font-size: .8em;
+  text-align: center;
+}
+
+.math-dynamic-matrix-controls button {
+  border: 1px solid var(--bs-border-color, #adb5bd);
+  border-radius: .3em;
+  background: var(--bs-tertiary-bg, #f8f9fa);
+  color: var(--bs-body-color, #212529);
+  min-width: 2em;
+  min-height: 2em;
+  padding: .05em .3em;
+  font-size: .8em;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.math-dynamic-matrix-controls button:hover:not(:disabled),
+.math-dynamic-matrix-controls button:focus-visible {
+  border-color: var(--bs-primary, #0d6efd);
+}
+
+.math-dynamic-matrix-controls button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 576px) {
+  .math-exercise-question { overflow-x: auto; }
+  .math-vec,
+  .math-mat { gap: .22em; padding-inline: .8em; }
+  .math-mat-cell { width: 2.9em; padding-inline: .2em; }
+}
+
+/* State feedback on the input itself.
+   Background AND text color are fixed together (not theme variables) so the
+   text stays readable regardless of the page's light/dark theme. */
+.math-input-ok {
+  border-color: #198754 !important;
+  background:   #f0fff4 !important;
+  color:        #14532d !important;
+}
+.math-input-dependent {
+  border-color: #c58a00 !important;
+  background:   #fff4bf !important;
+  color:        #5f4300 !important;
+}
+.math-input-partial {
+  border-color: #d39e00 !important;
+  background:   #fffbea !important;
+  color:        #664d03 !important;
+}
+.math-input-wrong {
+  border-color: #dc3545 !important;
+  background:   #fff5f5 !important;
+  color:        #7f1d1d !important;
+}
+.math-input-err {
+  border-color: #fd7e14 !important;
+  background:   #fffbf0 !important;
+  color:        #7c2d12 !important;
+}
+

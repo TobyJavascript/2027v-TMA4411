@@ -1,0 +1,277 @@
+/* ---- Exercise container (also an exercise shown as text without AI feedback) ---- */
+.math-exercise-cell, .math-exercise-text {
+  position: relative;
+  margin: 1.5em 0;
+  padding: 1.25em 1.5em;
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: .5em;
+  background: var(--bs-body-bg, #fafafa);
+  color: var(--bs-body-color, #212529);
+}
+
+/* ---- Explicit AI-feedback context block (::: {.math-exercise-context}) ---- */
+.math-exercise-context {
+  margin: 1.5em 0;
+  padding: .85em 1.1em;
+  border-left: 3px solid var(--bs-secondary-color, #6c757d);
+  background: var(--bs-tertiary-bg, #f8f9fa);
+  border-radius: 0 .35em .35em 0;
+}
+
+/* Pool reload button – top-right corner */
+.math-pool-reload {
+  position: absolute;
+  top: .55em;
+  right: .6em;
+  background: none;
+  border: 1px solid var(--bs-border-color, #ced4da);
+  border-radius: .3em;
+  padding: .1em .4em;
+  font-size: 1.05em;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--bs-secondary-color, #6c757d);
+  transition: background .12s, color .12s;
+}
+.math-pool-reload:hover { background: var(--bs-tertiary-bg, #e9ecef); color: var(--bs-body-color, #212529); }
+
+.math-exercise-caption {
+  font-weight: 600;
+  font-size: 1.05em;
+  margin-bottom: 0;
+  color: var(--bs-body-color, #1a1a2e);
+  border-bottom: 2px solid var(--bs-border-color, #dee2e6);
+  padding-bottom: .35em;
+}
+
+.math-exercise-text .math-exercise-caption { margin-bottom: .75em; }
+
+/* Collapsible toggle */
+.math-exercise-toggle {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: .45em;
+}
+.math-exercise-toggle:hover { color: var(--bs-primary, #0d6efd); border-bottom-color: var(--bs-primary, #0d6efd); }
+.math-exercise-open .math-exercise-toggle { margin-bottom: .75em; }
+
+/* Keep collapsed interactive content in layout so iframe-based tools such as
+   JSXGraph initialize with real dimensions. Clipping and visibility preserve
+   the compact, non-interactive collapsed state without display:none. */
+.math-exercise-cell:not(.math-exercise-open) > .math-exercise-body {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.math-chevron {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: transform .18s ease;
+  color: var(--bs-secondary-color, #6c757d);
+  font-size: .7em;
+}
+.math-chevron::before { content: '▶'; }
+.math-exercise-open .math-chevron { transform: rotate(90deg); }
+
+.math-exercise-question {
+  margin-bottom: 1em;
+  line-height: 1.8;
+  color: var(--bs-body-color, #212529);
+}
+
+.math-exercise-response-slot {
+  margin: 0 0 1em;
+}
+
+.math-exercise-response-slot iframe {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+}
+
+/* ---- Buttons ---- */
+.math-exercise-controls {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  margin-bottom: .75em;
+  flex-wrap: wrap;
+}
+
+.math-legend-btn.active {
+  background: var(--bs-secondary-bg, #e2e3e5);
+  border-color: var(--bs-border-color, #adb5bd);
+}
+
+/* ---- Legend panel ---- */
+.math-legend-panel {
+  margin: 0 0 .75em;
+  padding: .75em 1em;
+  background: var(--bs-tertiary-bg, #f8f9fa);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: .4em;
+  font-size: .88em;
+  color: var(--bs-body-color, #212529);
+}
+
+.math-legend-ops {
+  margin: 0 0 .6em;
+  color: var(--bs-secondary-color, #495057);
+}
+
+.math-legend-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.math-legend-table th,
+.math-legend-table td {
+  padding: .28em .6em;
+  border-bottom: 1px solid var(--bs-border-color, #e9ecef);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.math-legend-table th {
+  font-weight: 600;
+  background: var(--bs-secondary-bg, #e9ecef);
+  font-size: .9em;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+
+.math-legend-math {
+  min-width: 6em;
+}
+
+/* Fixed light-blue chip: background + text are paired and theme-independent. */
+.math-legend-code {
+  background: #dde8fd;
+  color: #1a1a2e;
+  padding: .1em .4em;
+  border-radius: .2em;
+  font-family: 'Fira Mono', 'Consolas', monospace;
+  font-size: .95em;
+  white-space: nowrap;
+}
+
+.math-legend-desc {
+  color: var(--bs-secondary-color, #6c757d);
+}
+
+/* ---- Feedback messages ---- */
+.math-feedback-area {
+  margin-top: .25em;
+}
+
+.math-fb-ok,
+.math-fb-partial,
+.math-fb-wrong,
+.math-fb-empty,
+.math-fb-err,
+.math-fb-checking,
+.math-fb-score {
+  padding: .4em .8em;
+  border-radius: .3em;
+  margin-bottom: .3em;
+  font-size: .92em;
+  line-height: 1.5;
+}
+
+.math-fb-ok       { background: #d1e7dd; color: #0a3622; }
+.math-fb-partial,
+.math-fb-score    { background: #fff3cd; color: #664d03; }
+.math-fb-score    { font-weight: 600; }
+.math-fb-wrong    { background: #f8d7da; color: #58151c; }
+.math-fb-empty    { background: #fff3cd; color: #664d03; }
+.math-fb-err      { background: #fff3cd; color: #664d03; }
+.math-fb-checking { background: #e2e3e5; color: #41464b; font-style: italic; }
+
+/* ---- LLM feedback block ---- */
+.math-fb-llm {
+  background: #e8f4fd;
+  border: 1px solid #b8d9f8;
+  border-radius: .3em;
+  padding: .5em .85em;
+  font-size: .92em;
+}
+.math-fb-llm-header {
+  font-weight: 600;
+  color: #004085;
+  margin-bottom: .3em;
+}
+.math-fb-llm-cnt {
+  font-weight: 400;
+  font-size: .9em;
+  color: #6c8ebf;
+}
+.math-fb-llm-body {
+  line-height: 1.55;
+  color: #1a1a2e;
+}
+
+.math-fb-llm-body p {
+  margin: 0 0 .7em;
+}
+.math-fb-llm-body p:last-child {
+  margin-bottom: 0;
+}
+.math-fb-llm-body ul,
+.math-fb-llm-body ol {
+  margin: .35em 0 .7em;
+  padding-left: 1.4em;
+}
+.math-fb-llm-body li {
+  margin: .15em 0;
+}
+.math-fb-llm-body .math-fb-display {
+  margin: .5em 0 .65em;
+}
+
+.math-fb-table-wrap {
+  max-width: 100%;
+  margin: .45em 0 .7em;
+  overflow-x: auto;
+}
+
+.math-fb-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  font-size: .95em;
+}
+
+.math-fb-table th,
+.math-fb-table td {
+  padding: .3em .45em;
+  border: 1px solid var(--bs-border-color, #b8c5d1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.math-fb-table th {
+  background: rgba(255, 255, 255, .45);
+  font-weight: 600;
+}
+.math-fb-llm-body .katex-display {
+  margin: 0;
+}
+
+/* Common CTM button size, shared by all CTM components (math-exercise,
+   py-exercise, pyodide-interaktiv, ai-feedback). Set the --ctm-button-*
+   variables in your CSS or theme to change all of them together. */
+.math-exercise-controls button,
+.math-exercise-controls .ai-feedback-gear {
+  font-size: var(--ctm-button-font-size, .875rem);
+  padding: var(--ctm-button-padding-y, .375rem) var(--ctm-button-padding-x, .75rem);
+  line-height: var(--ctm-button-line-height, 1.5);
+  border-radius: var(--ctm-button-radius, var(--bs-border-radius, .375rem));
+}
+.math-exercise-controls .ai-feedback-gear {
+  margin: 0;
+}

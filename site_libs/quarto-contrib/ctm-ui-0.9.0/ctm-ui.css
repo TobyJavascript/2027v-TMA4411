@@ -1,0 +1,125 @@
+/* CTM Assessment: reveals, the lecture/reading switch, embedded pages and
+ * link targets (ctm-libs) — AGPL-3.0-or-later. Colours are custom properties;
+ * a site overrides them on :root (light) or .quarto-dark (dark). The values
+ * are the courses' own: ingmat3a's "Gå i dybden" box and switch, ctm-demo's
+ * green solution box. Text keeps the theme's colour, and the backgrounds are
+ * faint tints over the page: on white they give exactly the courses' #f6f8fa,
+ * #f4f8f4 and #f4f8fa; under a dark theme (also one without a light twin,
+ * where Quarto sets no .quarto-dark) they stay dark, and the theme's text
+ * reads as on the page itself. */
+:root {
+  --ctm-reveal-border: #7899ac;
+  --ctm-reveal-background: rgba(75, 115, 155, 0.05);
+  --ctm-reveal-solution-border: #4f7d57;
+  --ctm-reveal-solution-background: rgba(35, 115, 35, 0.05);
+  --ctm-reveal-details-border: #9aaebc;
+  --ctm-reveal-focus: #ad6600;
+  --ctm-modes-border: #9aaebc;
+  --ctm-modes-background: rgba(35, 115, 155, 0.05);
+  --ctm-modes-button-border: #245b79;
+  --ctm-modes-button-background: #fff;
+  --ctm-modes-button-color: #183e53;
+  --ctm-modes-pressed-background: #245b79;
+  --ctm-modes-pressed-color: #fff;
+  --ctm-embed-border: #d4e0e7;
+}
+.quarto-dark {
+  --ctm-reveal-border: #7899ac;
+  --ctm-reveal-solution-border: #6f9f77;
+  --ctm-reveal-details-border: #7d93a3;
+  --ctm-reveal-focus: #f0a43a;
+  --ctm-modes-border: #5d7383;
+  --ctm-modes-button-border: #7fb2cf;
+  --ctm-modes-button-background: transparent;
+  --ctm-modes-button-color: #d6e6ef;
+  --ctm-modes-pressed-background: #7fb2cf;
+  --ctm-modes-pressed-color: #10222d;
+  --ctm-embed-border: #3c4c57;
+}
+
+/* Reveals: <details class="ctm-reveal <kind>"> with a summary and a
+ * .ctm-reveal-body. "Gå i dybden" (.reading-step) and .hint share the box;
+ * .solution is green; .details (closed, never touched by the switch) is
+ * related but distinct: a dashed line, no fill, a plain summary with "›". */
+details.ctm-reveal {
+  margin: 1rem 0;
+  padding: 0.7rem 1rem;
+  border-left: 3px solid var(--ctm-reveal-border);
+  background: var(--ctm-reveal-background);
+}
+details.ctm-reveal.solution {
+  border-left-color: var(--ctm-reveal-solution-border);
+  background: var(--ctm-reveal-solution-background);
+}
+details.ctm-reveal > summary { cursor: pointer; font-weight: 600; }
+details.ctm-reveal[open] > summary { margin-bottom: 0.8rem; }
+details.ctm-reveal > summary:focus-visible {
+  outline: 3px solid var(--ctm-reveal-focus);
+  outline-offset: 3px;
+}
+details.ctm-reveal.details {
+  border-left: 2px dashed var(--ctm-reveal-details-border);
+  background: transparent;
+}
+details.ctm-reveal.details > summary {
+  font-weight: 400;
+  list-style: none;
+}
+details.ctm-reveal.details > summary::-webkit-details-marker { display: none; }
+/* The "›" is drawn, not written: no text for screen readers to read out. */
+details.ctm-reveal.details > summary::before {
+  content: "";
+  display: inline-block;
+  width: 0.42em;
+  height: 0.42em;
+  margin: 0 0.6em 0.12em 0.15em;
+  border-right: 0.12em solid currentColor;
+  border-bottom: 0.12em solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease-in-out;
+}
+details.ctm-reveal.details[open] > summary::before { transform: rotate(45deg); }
+.ctm-reveal-body > :last-child { margin-bottom: 0; }
+
+/* The lecture/reading switch (hidden until ui/ctm-reveal.js runs). */
+.ctm-modes {
+  padding: 0.85rem 1rem;
+  margin: 1rem 0 1.5rem;
+  border: 1px solid var(--ctm-modes-border);
+  border-radius: 0.4rem;
+  background: var(--ctm-modes-background);
+}
+.ctm-modes[hidden] { display: none; }
+.ctm-modes button {
+  padding: 0.4rem 0.85rem;
+  margin: 0.25rem 0.4rem 0.25rem 0;
+  border: 1px solid var(--ctm-modes-button-border);
+  border-radius: 0.3rem;
+  background: var(--ctm-modes-button-background);
+  color: var(--ctm-modes-button-color);
+}
+.ctm-modes button[aria-pressed="true"] {
+  background: var(--ctm-modes-pressed-background);
+  color: var(--ctm-modes-pressed-color);
+}
+.ctm-modes button:focus-visible {
+  outline: 3px solid var(--ctm-reveal-focus);
+  outline-offset: 3px;
+}
+.ctm-modes-status { display: block; margin-top: 0.4rem; font-size: 0.9rem; }
+
+/* Embedded pages (::: {.embed}); the height comes with the element. */
+.ctm-embed {
+  width: 100%;
+  border: 1px solid var(--ctm-embed-border);
+  border-radius: 6px;
+}
+
+/* A link target that ui/ctm-nav.js focuses (tabindex -1 while focused): no
+ * ring for mouse users. Only its own targets: the rest of the page keeps the
+ * theme's rules. */
+[data-ctm-nav-focus]:focus:not(:focus-visible) { outline: none; }
+
+@media print {
+  .ctm-modes { display: none !important; }
+}
