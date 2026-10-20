@@ -6,6 +6,8 @@ obligatoriske innleveringene. Interaktive matematikkoppgaver, AI-tilbakemelding
 og Python i nettleseren kommer fra
 [CTM Assessment](https://github.com/Erasmus-CTM/ctm-assessment).
 
+**Nettsted:** <https://tobyjavascript.github.io/2027v-TMA4411/>
+
 Oppsettet er hentet fra [ingmat3a_ntnu](https://github.com/aacchhee/ingmat3a_ntnu)
 (Matematikk 3A), med eget innhold for TMA4411.
 

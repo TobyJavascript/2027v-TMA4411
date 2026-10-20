@@ -15,6 +15,8 @@ filters:
 website:
   title: "TMA4411 Matematikk 2B"
   page-navigation: true
+  repo-url: https://github.com/TobyJavascript/2027v-TMA4411
+  repo-actions: [issue]
   page-footer:
     border: true
     center: >-

@@ -102,9 +102,10 @@ Ikke skriv nøkkelen i Python-kode, del den med andre eller legg den i Git. På 
 
 ### Problemer og forbedringsforslag
 
-Finner du en feil i en oppgave, et løsningsforslag eller i visningen, åpne
-gjerne en sak (issue) i GitHub-repoet til nettstedet, eller gi beskjed til
-emneansvarlig. Ta med sidenavn, oppgave,
+Finner du en feil i en oppgave, et løsningsforslag eller i visningen, bruk
+lenken **Rapporter et problem** i innholdsfortegnelsen på siden, eller åpne en
+[sak i GitHub-repoet](https://github.com/TobyJavascript/2027v-TMA4411/issues).
+Du kan også gi beskjed til emneansvarlig. Ta med sidenavn, oppgave,
 hva du gjorde og hva du forventet skulle skje. Skjermbilde og nettlesernavn er
 nyttig ved visningsproblemer.
 
