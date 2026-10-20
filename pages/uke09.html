@@ -47,7 +47,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5337165f197680d68c11b8afac1372bd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0e53955fafe0ce48d7f15f4d9f72b5a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/quarto-contrib/ctm-ui-0.9.0/ctm-ui.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/ctm-nav-0.9.0/ctm-nav.js"></script>
 <script src="../site_libs/quarto-contrib/ai-feedback-0.9.0/feedback-core.js"></script>
@@ -4327,36 +4327,36 @@ window.Quarto = {
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Oppgavene bygger på flervalgsoppgavesett 9 fra 2026, omformulert slik at du må regne deg fram til svaret i stedet for å velge blant alternativer. Svar, trykk <strong>Sjekk</strong>, og bruk eventuelt <strong>Tilbakemelding</strong> for et hint. Åpne løsningsforslaget først når du har prøvd selv.</p>
 <div id="uke09-rk-context" class="math-exercise-context">
-<p><strong>Begreper i denne uken.</strong> En eksplisitt Runge–Kutta-metode med <span data-ai-feedback-tex="s" data-ai-feedback-display="false"><span class="math inline">\(s\)</span></span> trinn for <span data-ai-feedback-tex="y'=f(t,y)" data-ai-feedback-display="false"><span class="math inline">\(y'=f(t,y)\)</span></span> er</p>
-<p><span data-ai-feedback-tex="
+<p><strong>Begreper i denne uken.</strong> En eksplisitt Runge–Kutta-metode med <span data-ai-feedback-display="false" data-ai-feedback-tex="s"><span class="math inline">\(s\)</span></span> trinn for <span data-ai-feedback-display="false" data-ai-feedback-tex="y'=f(t,y)"><span class="math inline">\(y'=f(t,y)\)</span></span> er</p>
+<p><span data-ai-feedback-display="true" data-ai-feedback-tex="
 K_i=f\Big(t_n+c_ih,\ u_n+h\sum_{j<i}a_{ij}K_j\Big),\qquad
 u_{n+1}=u_n+h\sum_{i=1}^sb_iK_i ,
-" data-ai-feedback-display="true"><span class="math display">\[
+"><span class="math display">\[
 K_i=f\Big(t_n+c_ih,\ u_n+h\sum_{j&lt;i}a_{ij}K_j\Big),\qquad
 u_{n+1}=u_n+h\sum_{i=1}^sb_iK_i ,
 \]</span></span></p>
 <p>og skrives som Butcher-tablået</p>
-<p><span data-ai-feedback-tex="
+<p><span data-ai-feedback-display="true" data-ai-feedback-tex="
 \begin{array}{c|ccc}
 c_1&amp;&amp;&amp;\\ c_2&amp;a_{21}&amp;&amp;\\ c_3&amp;a_{31}&amp;a_{32}&amp;\\\hline &amp;b_1&amp;b_2&amp;b_3
 \end{array}
 \qquad(c_1=0).
-" data-ai-feedback-display="true"><span class="math display">\[
+"><span class="math display">\[
 \begin{array}{c|ccc}
 c_1&amp;&amp;&amp;\\ c_2&amp;a_{21}&amp;&amp;\\ c_3&amp;a_{31}&amp;a_{32}&amp;\\\hline &amp;b_1&amp;b_2&amp;b_3
 \end{array}
 \qquad(c_1=0).
 \]</span></span></p>
-<p>Ordensbetingelser (med <span data-ai-feedback-tex="c_i=\sum_ja_{ij}" data-ai-feedback-display="false"><span class="math inline">\(c_i=\sum_ja_{ij}\)</span></span>): orden <span data-ai-feedback-tex="\ge1" data-ai-feedback-display="false"><span class="math inline">\(\ge1\)</span></span> krever <span data-ai-feedback-tex="\sum_ib_i=1" data-ai-feedback-display="false"><span class="math inline">\(\sum_ib_i=1\)</span></span>; orden <span data-ai-feedback-tex="\ge2" data-ai-feedback-display="false"><span class="math inline">\(\ge2\)</span></span> krever i tillegg <span data-ai-feedback-tex="\sum_ib_ic_i=\tfrac12" data-ai-feedback-display="false"><span class="math inline">\(\sum_ib_ic_i=\tfrac12\)</span></span>; orden <span data-ai-feedback-tex="\ge3" data-ai-feedback-display="false"><span class="math inline">\(\ge3\)</span></span> krever i tillegg <span data-ai-feedback-tex="\sum_ib_ic_i^2=\tfrac13" data-ai-feedback-display="false"><span class="math inline">\(\sum_ib_ic_i^2=\tfrac13\)</span></span> og <span data-ai-feedback-tex="\sum_{i,j}b_ia_{ij}c_j=\tfrac16" data-ai-feedback-display="false"><span class="math inline">\(\sum_{i,j}b_ia_{ij}c_j=\tfrac16\)</span></span>.</p>
-<p>En metode av orden <span data-ai-feedback-tex="p" data-ai-feedback-display="false"><span class="math inline">\(p\)</span></span> har global feil <span data-ai-feedback-tex="O(h^p)" data-ai-feedback-display="false"><span class="math inline">\(O(h^p)\)</span></span>: når <span data-ai-feedback-tex="h" data-ai-feedback-display="false"><span class="math inline">\(h\)</span></span> halveres, blir feilen omtrent <span data-ai-feedback-tex="2^p" data-ai-feedback-display="false"><span class="math inline">\(2^p\)</span></span> ganger mindre.</p>
+<p>Ordensbetingelser (med <span data-ai-feedback-display="false" data-ai-feedback-tex="c_i=\sum_ja_{ij}"><span class="math inline">\(c_i=\sum_ja_{ij}\)</span></span>): orden <span data-ai-feedback-display="false" data-ai-feedback-tex="\ge1"><span class="math inline">\(\ge1\)</span></span> krever <span data-ai-feedback-display="false" data-ai-feedback-tex="\sum_ib_i=1"><span class="math inline">\(\sum_ib_i=1\)</span></span>; orden <span data-ai-feedback-display="false" data-ai-feedback-tex="\ge2"><span class="math inline">\(\ge2\)</span></span> krever i tillegg <span data-ai-feedback-display="false" data-ai-feedback-tex="\sum_ib_ic_i=\tfrac12"><span class="math inline">\(\sum_ib_ic_i=\tfrac12\)</span></span>; orden <span data-ai-feedback-display="false" data-ai-feedback-tex="\ge3"><span class="math inline">\(\ge3\)</span></span> krever i tillegg <span data-ai-feedback-display="false" data-ai-feedback-tex="\sum_ib_ic_i^2=\tfrac13"><span class="math inline">\(\sum_ib_ic_i^2=\tfrac13\)</span></span> og <span data-ai-feedback-display="false" data-ai-feedback-tex="\sum_{i,j}b_ia_{ij}c_j=\tfrac16"><span class="math inline">\(\sum_{i,j}b_ia_{ij}c_j=\tfrac16\)</span></span>.</p>
+<p>En metode av orden <span data-ai-feedback-display="false" data-ai-feedback-tex="p"><span class="math inline">\(p\)</span></span> har global feil <span data-ai-feedback-display="false" data-ai-feedback-tex="O(h^p)"><span class="math inline">\(O(h^p)\)</span></span>: når <span data-ai-feedback-display="false" data-ai-feedback-tex="h"><span class="math inline">\(h\)</span></span> halveres, blir feilen omtrent <span data-ai-feedback-display="false" data-ai-feedback-tex="2^p"><span class="math inline">\(2^p\)</span></span> ganger mindre.</p>
 </div>
 <section id="oppgave-1-heuns-metode-som-butcher-tablå" class="level3">
 <h3 class="anchored" data-anchor-id="oppgave-1-heuns-metode-som-butcher-tablå">Oppgave 1 – Heuns metode som Butcher-tablå</h3>
 <div id="uke09-opp1-context" class="math-exercise-context">
 <p>Metoden</p>
-<p><span data-ai-feedback-tex="
+<p><span data-ai-feedback-display="true" data-ai-feedback-tex="
 u_{n+1}=u_n+\frac h2(K_1+K_2),\qquad K_1=f(t_n,u_n),\quad K_2=f(t_n+h,\ u_n+hK_1)
-" data-ai-feedback-display="true"><span class="math display">\[
+"><span class="math display">\[
 u_{n+1}=u_n+\frac h2(K_1+K_2),\qquad K_1=f(t_n,u_n),\quad K_2=f(t_n+h,\ u_n+hK_1)
 \]</span></span></p>
 <p>er et totrinns Runge–Kutta-skjema.</p>
@@ -4414,7 +4414,7 @@ Orden: <input type="text" id="math-exercise-1-f6" data-answer="2" data-vars="" a
 <section id="oppgave-2-fra-kode-til-tablå" class="level3">
 <h3 class="anchored" data-anchor-id="oppgave-2-fra-kode-til-tablå">Oppgave 2 – fra kode til tablå</h3>
 <div id="uke09-opp2-context" class="math-exercise-context">
-<p>Funksjonen <code>RKF</code> nedenfor implementerer en trestegs Runge–Kutta-metode for <span data-ai-feedback-tex="y'=f(t,y)" data-ai-feedback-display="false"><span class="math inline">\(y'=f(t,y)\)</span></span>, der <code>odefile(t, y)</code> beregner <span data-ai-feedback-tex="f(t,y)" data-ai-feedback-display="false"><span class="math inline">\(f(t,y)\)</span></span>. Cellen tester metoden på <span data-ai-feedback-tex="y'=t-y" data-ai-feedback-display="false"><span class="math inline">\(y'=t-y\)</span></span>, <span data-ai-feedback-tex="y(0)=1" data-ai-feedback-display="false"><span class="math inline">\(y(0)=1\)</span></span>, med eksakt løsning <span data-ai-feedback-tex="y(t)=t-1+2e^{-t}" data-ai-feedback-display="false"><span class="math inline">\(y(t)=t-1+2e^{-t}\)</span></span>.</p>
+<p>Funksjonen <code>RKF</code> nedenfor implementerer en trestegs Runge–Kutta-metode for <span data-ai-feedback-display="false" data-ai-feedback-tex="y'=f(t,y)"><span class="math inline">\(y'=f(t,y)\)</span></span>, der <code>odefile(t, y)</code> beregner <span data-ai-feedback-display="false" data-ai-feedback-tex="f(t,y)"><span class="math inline">\(f(t,y)\)</span></span>. Cellen tester metoden på <span data-ai-feedback-display="false" data-ai-feedback-tex="y'=t-y"><span class="math inline">\(y'=t-y\)</span></span>, <span data-ai-feedback-display="false" data-ai-feedback-tex="y(0)=1"><span class="math inline">\(y(0)=1\)</span></span>, med eksakt løsning <span data-ai-feedback-display="false" data-ai-feedback-tex="y(t)=t-1+2e^{-t}"><span class="math inline">\(y(t)=t-1+2e^{-t}\)</span></span>.</p>
 </div>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Slå på JavaScript for å kunne bruke de interaktive kodecellene på denne siden.</noscript>
@@ -4508,12 +4508,12 @@ Verdien \(c_2=a_{21}\) som gir orden 3: <input type="text" id="math-exercise-3-f
 <h3 class="anchored" data-anchor-id="oppgave-3-fra-tablå-til-formler">Oppgave 3 – fra tablå til formler</h3>
 <div id="uke09-opp3-context" class="math-exercise-context">
 <p>Butcher-tablået</p>
-<p><span data-ai-feedback-tex="
+<p><span data-ai-feedback-display="true" data-ai-feedback-tex="
 \begin{array}{c|ccc}0&amp;&amp;&amp;\\1&amp;1&amp;&amp;\\\tfrac12&amp;\tfrac14&amp;\tfrac14&amp;\\\hline&amp;\tfrac23&amp;\tfrac13&amp;0\end{array}
-" data-ai-feedback-display="true"><span class="math display">\[
+"><span class="math display">\[
 \begin{array}{c|ccc}0&amp;&amp;&amp;\\1&amp;1&amp;&amp;\\\tfrac12&amp;\tfrac14&amp;\tfrac14&amp;\\\hline&amp;\tfrac23&amp;\tfrac13&amp;0\end{array}
 \]</span></span></p>
-<p>beskriver en Runge–Kutta-metode <span data-ai-feedback-tex="u_{n+1}=u_n+h(\beta_1K_1+\beta_2K_2+\beta_3K_3)" data-ai-feedback-display="false"><span class="math inline">\(u_{n+1}=u_n+h(\beta_1K_1+\beta_2K_2+\beta_3K_3)\)</span></span> med <span data-ai-feedback-tex="K_1=f(t_n,u_n)" data-ai-feedback-display="false"><span class="math inline">\(K_1=f(t_n,u_n)\)</span></span>, <span data-ai-feedback-tex="K_2=f(t_n+\gamma_2h,\ u_n+\delta_{21}hK_1)" data-ai-feedback-display="false"><span class="math inline">\(K_2=f(t_n+\gamma_2h,\ u_n+\delta_{21}hK_1)\)</span></span> og <span data-ai-feedback-tex="K_3=f\big(t_n+\gamma_3h,\ u_n+h(\delta_{31}K_1+\delta_{32}K_2)\big)" data-ai-feedback-display="false"><span class="math inline">\(K_3=f\big(t_n+\gamma_3h,\ u_n+h(\delta_{31}K_1+\delta_{32}K_2)\big)\)</span></span>.</p>
+<p>beskriver en Runge–Kutta-metode <span data-ai-feedback-display="false" data-ai-feedback-tex="u_{n+1}=u_n+h(\beta_1K_1+\beta_2K_2+\beta_3K_3)"><span class="math inline">\(u_{n+1}=u_n+h(\beta_1K_1+\beta_2K_2+\beta_3K_3)\)</span></span> med <span data-ai-feedback-display="false" data-ai-feedback-tex="K_1=f(t_n,u_n)"><span class="math inline">\(K_1=f(t_n,u_n)\)</span></span>, <span data-ai-feedback-display="false" data-ai-feedback-tex="K_2=f(t_n+\gamma_2h,\ u_n+\delta_{21}hK_1)"><span class="math inline">\(K_2=f(t_n+\gamma_2h,\ u_n+\delta_{21}hK_1)\)</span></span> og <span data-ai-feedback-display="false" data-ai-feedback-tex="K_3=f\big(t_n+\gamma_3h,\ u_n+h(\delta_{31}K_1+\delta_{32}K_2)\big)"><span class="math inline">\(K_3=f\big(t_n+\gamma_3h,\ u_n+h(\delta_{31}K_1+\delta_{32}K_2)\big)\)</span></span>.</p>
 </div>
 <div class="math-exercise-cell" id="math-exercise-4" data-label="uke09-opp3-formler" data-mode="equivalent" data-reject="" data-vars="" data-tolerance="" data-decplaces="" data-sigfigs="" data-form="" data-checker="&quot;&quot;" data-packages="[]" data-response="" data-embed-response="false" data-partial-credit="false" data-form-credit="0.5" data-field-labels="[&quot;β_1&quot;,&quot;β_2&quot;,&quot;β_3&quot;,&quot;γ_2&quot;,&quot;δ_21&quot;,&quot;γ_3&quot;,&quot;δ_31&quot;,&quot;δ_32&quot;]" data-vecdir="col" data-feedback-policy="{&quot;exercise&quot;:&quot;uke09-opp3-formler&quot;,&quot;name&quot;:&quot;&quot;}" data-context-mode="explicit" data-context-refs="uke09-rk-context, uke09-opp3-context" data-context="&quot;Oppgave 3 – fra tablå til formler&quot;" data-fields="[&quot;math-exercise-4-f1&quot;,&quot;math-exercise-4-f2&quot;,&quot;math-exercise-4-f3&quot;,&quot;math-exercise-4-f4&quot;,&quot;math-exercise-4-f5&quot;,&quot;math-exercise-4-f6&quot;,&quot;math-exercise-4-f7&quot;,&quot;math-exercise-4-f8&quot;]" data-structural-field-labels="[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;]">
 <div class="math-exercise-caption math-exercise-toggle" data-math-exercise-source="Skriv ut metoden" role="button" tabindex="0" aria-expanded="false"><span class="math-chevron" aria-hidden="true"></span>Skriv ut metoden</div>
@@ -4577,12 +4577,12 @@ u_{n+1}&amp;=u_n+\tfrac h3(2K_1+K_2).
 <h3 class="anchored" data-anchor-id="oppgave-4-baklengs-euler-for-et-system">Oppgave 4 – baklengs Euler for et system</h3>
 <div id="uke09-opp4-context" class="math-exercise-context">
 <p>Vi ser på systemet</p>
-<p><span data-ai-feedback-tex="
+<p><span data-ai-feedback-display="true" data-ai-feedback-tex="
 y'(t)=Ay(t),\qquad A=\begin{pmatrix}1&amp;2\\3&amp;4\end{pmatrix},
-" data-ai-feedback-display="true"><span class="math display">\[
+"><span class="math display">\[
 y'(t)=Ay(t),\qquad A=\begin{pmatrix}1&amp;2\\3&amp;4\end{pmatrix},
 \]</span></span></p>
-<p>og baklengs (implisitt) Euler: <span data-ai-feedback-tex="u_{n+1}=u_n+hAu_{n+1}" data-ai-feedback-display="false"><span class="math inline">\(u_{n+1}=u_n+hAu_{n+1}\)</span></span>.</p>
+<p>og baklengs (implisitt) Euler: <span data-ai-feedback-display="false" data-ai-feedback-tex="u_{n+1}=u_n+hAu_{n+1}"><span class="math inline">\(u_{n+1}=u_n+hAu_{n+1}\)</span></span>.</p>
 </div>
 <div class="math-exercise-cell" id="math-exercise-5" data-label="uke09-opp4-baklengs" data-mode="equivalent" data-reject="" data-vars="" data-tolerance="" data-decplaces="" data-sigfigs="" data-form="" data-checker="&quot;&quot;" data-packages="[]" data-response="" data-embed-response="false" data-partial-credit="false" data-form-credit="0.5" data-field-labels="[&quot;M_11&quot;,&quot;M_12&quot;,&quot;M_21&quot;,&quot;M_22&quot;,&quot;u_1 første komponent&quot;,&quot;u_1 andre komponent&quot;]" data-vecdir="col" data-feedback-policy="{&quot;exercise&quot;:&quot;uke09-opp4-baklengs&quot;,&quot;name&quot;:&quot;&quot;}" data-context-mode="explicit" data-context-refs="uke09-rk-context, uke09-opp4-context" data-context="&quot;Oppgave 4 – baklengs Euler for et system&quot;" data-fields="[&quot;math-exercise-5-f1&quot;,&quot;math-exercise-5-f2&quot;,&quot;math-exercise-5-f3&quot;,&quot;math-exercise-5-f4&quot;,&quot;math-exercise-5-f5&quot;,&quot;math-exercise-5-f6&quot;]" data-structural-field-labels="[&quot;m1,1&quot;,&quot;m1,2&quot;,&quot;m2,1&quot;,&quot;m2,2&quot;,&quot;v1&quot;,&quot;v2&quot;]">
 <div class="math-exercise-caption math-exercise-toggle" data-math-exercise-source="Ett steg med baklengs Euler" role="button" tabindex="0" aria-expanded="false"><span class="math-chevron" aria-hidden="true"></span>Ett steg med baklengs Euler</div>
@@ -4643,15 +4643,15 @@ M=I-\tfrac12A=\begin{pmatrix}\tfrac12&amp;-1\\-\tfrac32&amp;-1\end{pmatrix},\qqu
 <section id="oppgave-5-leap-frog-for-en-andreordens-ligning" class="level3">
 <h3 class="anchored" data-anchor-id="oppgave-5-leap-frog-for-en-andreordens-ligning">Oppgave 5 – leap-frog for en andreordens ligning</h3>
 <div id="uke09-opp5-context" class="math-exercise-context">
-<p>Vi ser på <span data-ai-feedback-tex="y''(t)=y'(t)-y(t)" data-ai-feedback-display="false"><span class="math inline">\(y''(t)=y'(t)-y(t)\)</span></span>, med <span data-ai-feedback-tex="u_n\approx y(t_n)" data-ai-feedback-display="false"><span class="math inline">\(u_n\approx y(t_n)\)</span></span> og <span data-ai-feedback-tex="v_n\approx y'(t_n)" data-ai-feedback-display="false"><span class="math inline">\(v_n\approx y'(t_n)\)</span></span>. Leap-frog-metoden bruker sentrale differenser:</p>
-<p><span data-ai-feedback-tex="
+<p>Vi ser på <span data-ai-feedback-display="false" data-ai-feedback-tex="y''(t)=y'(t)-y(t)"><span class="math inline">\(y''(t)=y'(t)-y(t)\)</span></span>, med <span data-ai-feedback-display="false" data-ai-feedback-tex="u_n\approx y(t_n)"><span class="math inline">\(u_n\approx y(t_n)\)</span></span> og <span data-ai-feedback-display="false" data-ai-feedback-tex="v_n\approx y'(t_n)"><span class="math inline">\(v_n\approx y'(t_n)\)</span></span>. Leap-frog-metoden bruker sentrale differenser:</p>
+<p><span data-ai-feedback-display="true" data-ai-feedback-tex="
 \frac{u_{n+1}-2u_n+u_{n-1}}{h^2}=v_n-u_n,\qquad
 \frac{u_{n+1}-u_{n-1}}{2h}=v_n .
-" data-ai-feedback-display="true"><span class="math display">\[
+"><span class="math display">\[
 \frac{u_{n+1}-2u_n+u_{n-1}}{h^2}=v_n-u_n,\qquad
 \frac{u_{n+1}-u_{n-1}}{2h}=v_n .
 \]</span></span></p>
-<p>For å starte trenger vi en «spøkelsesverdi» <span data-ai-feedback-tex="u_{-1}" data-ai-feedback-display="false"><span class="math inline">\(u_{-1}\)</span></span>. Skriv <span data-ai-feedback-tex="u_0" data-ai-feedback-display="false"><span class="math inline">\(u_0\)</span></span>, <span data-ai-feedback-tex="v_0" data-ai-feedback-display="false"><span class="math inline">\(v_0\)</span></span> som <code>u0</code>, <code>v0</code>.</p>
+<p>For å starte trenger vi en «spøkelsesverdi» <span data-ai-feedback-display="false" data-ai-feedback-tex="u_{-1}"><span class="math inline">\(u_{-1}\)</span></span>. Skriv <span data-ai-feedback-display="false" data-ai-feedback-tex="u_0"><span class="math inline">\(u_0\)</span></span>, <span data-ai-feedback-display="false" data-ai-feedback-tex="v_0"><span class="math inline">\(v_0\)</span></span> som <code>u0</code>, <code>v0</code>.</p>
 </div>
 <div class="math-exercise-cell" id="math-exercise-6" data-label="uke09-opp5a-start" data-mode="equivalent" data-reject="" data-vars="u0, v0, h" data-tolerance="" data-decplaces="" data-sigfigs="" data-form="" data-checker="&quot;&quot;" data-packages="[]" data-response="" data-embed-response="false" data-partial-credit="false" data-form-credit="0.5" data-field-labels="[&quot;u_(−1)&quot;,&quot;u_1&quot;]" data-vecdir="col" data-feedback-policy="{&quot;exercise&quot;:&quot;uke09-opp5a-start&quot;,&quot;name&quot;:&quot;&quot;}" data-context-mode="explicit" data-context-refs="uke09-rk-context, uke09-opp5-context" data-context="&quot;Oppgave 5 – leap-frog for en andreordens ligning&quot;" data-fields="[&quot;math-exercise-6-f1&quot;,&quot;math-exercise-6-f2&quot;]" data-structural-field-labels="[&quot;&quot;,&quot;&quot;]">
 <div class="math-exercise-caption math-exercise-toggle" data-math-exercise-source="Startverdiene" role="button" tabindex="0" aria-expanded="false"><span class="math-chevron" aria-hidden="true"></span>Startverdiene</div>
@@ -5304,7 +5304,7 @@ u_{-1}=\tfrac12\big((h^2-2h)v_0+(2-h^2)u_0\big).
     </div>   
     <div class="nav-footer-center">
 <p>TMA4411 Matematikk 2B · NTNU · våren 2027 (utkast)</p>
-</div>
+<div class="toc-actions"><ul><li><a href="https://github.com/TobyJavascript/2027v-TMA4411/issues/new" class="toc-action"><i class="bi bi-github"></i>Meld om et problem</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
