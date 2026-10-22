@@ -82,7 +82,7 @@ Når du har fått nøkkelen:
 1. Trykk på **tannhjulikonet** (⚙) ved knappen **Tilbakemelding**. Da åpnes **Innstillinger for KI**.
 2. Velg **Direkte API** under **Modus**. Med standardvalget **Kopier instruksjon** sendes ingenting; du får i stedet en instruksjon som du selv kan lime inn i en KI-chat.
 3. Fyll inn **API-adresse** (base-URL-en) slik IDUN-dokumentasjonen angir, og lim inn nøkkelen i **Personlig API-nøkkel**.
-4. Trykk **Hent modeller** og velg en modell, eller skriv navnet i **Modell**. Prøv først en modell uten reasoning, f.eks. Kimi2.6-instant.
+4. Trykk **Hent modeller** og velg en modell, eller skriv navnet i **Modell**. Modeller uten reasoning svarer raskest.
 5. Velg **Lagring**: **Husk på denne enheten** på din egen datamaskin, **Denne fanen** på en delt datamaskin. Trykk **Lagre innstillinger**.
 6. Skriv et svar, trykk **Sjekk**, og trykk deretter **Tilbakemelding**. I Python-cellene trykker du **Tilbakemelding** ved kodevinduet.
 
@@ -111,7 +111,7 @@ nyttig ved visningsproblemer.
 
 ### Om nettstedet
 
-Innholdet bygger på framdriftsplanen, flervalgsoppgavene og innleveringene i
+Innholdet bygger på framdriftsplanen, flervalgsoppgavene og forelesnings- og plenumsmateriellet i
 TMA4411 Matematikk 2B våren 2026, omarbeidet til interaktive oppgaver med
 løsningsforslag.
 

@@ -4,7 +4,6 @@ project:
     - index.qmd
     - pages/*.qmd
   resources:
-    - assets/*.ipynb
     - assets/materiell/*.pdf
 
 lang: nb
@@ -68,16 +67,6 @@ website:
           - text: "Uke 14 – Prøveeksamen og repetisjon"
             file: pages/uke14.qmd
 
-      - section: "Innleveringer"
-        contents:
-          - text: "Innlevering 1"
-            file: pages/innlevering1.qmd
-          - text: "Innlevering 2"
-            file: pages/innlevering2.qmd
-          - text: "Innlevering 3"
-            file: pages/innlevering3.qmd
-          - text: "Innlevering 4"
-            file: pages/innlevering4.qmd
 
 format:
   html:

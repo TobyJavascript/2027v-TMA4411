@@ -50,18 +50,6 @@ Undervisningen går fra 11. januar til 7. mai 2027, med påskefri 22.–29. mars
 
 :::
 
-## Obligatoriske innleveringer
-
-| Innlevering | Dekker | Plassering i 2027 (utkast) |
-|:---|:---|:---|
-| [Innlevering 1](pages/innlevering1.qmd) | Vektorrom og lineærtransformasjoner | rundt uke 3 i kalenderen |
-| [Innlevering 2](pages/innlevering2.qmd) | Overgangsmatriser, projeksjoner og indreproduktrom | rundt uke 6 |
-| [Innlevering 3](pages/innlevering3.qmd) | Diagonalisering og differensialligninger (med Python) | rundt uke 9 |
-| [Innlevering 4](pages/innlevering4.qmd) | Funksjoner av flere variabler | rundt uke 13 |
-
-Antall innleveringer som må godkjennes, og fristene, kunngjøres ved
-semesterstart. I 2026 måtte 2 av 4 innleveringer godkjennes.
-
 ## Undervisning og pensum
 
 - **Forelesninger:** to forelesninger i uken (forelesning I og II) for hver
@@ -69,6 +57,8 @@ semesterstart. I 2026 måtte 2 av 4 innleveringer godkjennes.
   med lysark fra 2026 der de fins.
 - **Plenumsregning:** annenhver uke, med oppgaver og notater på ukesidene.
 - **Mattelab:** veiledning der du kan stille faglige spørsmål.
+- **Obligatoriske innleveringer:** antall som må godkjennes, oppgavene og
+  fristene kunngjøres i emnet. I 2026 måtte 2 av 4 innleveringer godkjennes.
 - Tider og rom for 2027 er ikke fastsatt. Se [info om emnet fra 2026](assets/materiell/InfoTMA4411.pdf){target="_blank"}
   for hvordan undervisningen var organisert.
 
@@ -81,8 +71,17 @@ Hver uke har et sett med oppgaver bygget på flervalgsoppgavene fra 2026.
 Flervalgsoppgavene er frivillige, men er pensum og anbefalt som støtte for
 læringen. Her er de omformulert til åpne oppgaver: du regner deg fram til et
 svar, skriver det inn og trykker **Sjekk**. Under hver oppgave ligger et
-sammenleggbart løsningsforslag. Knappen **Tilbakemelding** gir trinnvise hint
-fra en språkmodell; se [IDE / README](pages/ide.qmd) for hvordan den settes opp.
+sammenleggbart løsningsforslag.
+
+::: {.callout-tip title="Sjekk virker uten oppsett – hint er valgfritt"}
+
+**Sjekk** retter svaret ditt direkte i nettleseren og krever ingen innlogging
+eller oppsett. **Tilbakemelding** gir trinnvise hint fra en språkmodell og er
+et valgfritt tillegg: det krever en personlig API-nøkkel, se
+[IDE / README](pages/ide.qmd). Hintene kan inneholde feil – sammenlign alltid
+med løsningsforslaget.
+
+:::
 
 Noen uker har Python-celler som kjører direkte i nettleseren, slik at du kan
 eksperimentere med numeriske metoder og figurer uten å installere noe.

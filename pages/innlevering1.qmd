@@ -1,5 +1,0 @@
----
-title: "Innlevering 1 – Vektorrom og lineærtransformasjoner"
----
-
-{{< include ../_includes/innleveringer/innlevering1.md >}}

@@ -4,4 +4,3 @@ title: "Uke 14 – Prøveeksamen og repetisjon"
 
 {{< include ../_includes/uke14/plan.md >}}
 
-{{< include ../_includes/uke14/materiell.md >}}

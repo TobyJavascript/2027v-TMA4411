@@ -1,8 +1,8 @@
 # TMA4411 Matematikk 2B – kursnettsted våren 2027
 
 Quarto-nettsted for TMA4411 Matematikk 2B ved NTNU: framdriftsplan,
-forelesningsplan uke for uke, interaktive oppgaver med løsningsforslag og de
-obligatoriske innleveringene. Interaktive matematikkoppgaver, AI-tilbakemelding
+forelesningsplan uke for uke, interaktive oppgaver med løsningsforslag og
+forelesnings- og plenumsmateriell. Interaktive matematikkoppgaver, AI-tilbakemelding
 og Python i nettleseren kommer fra
 [CTM Assessment](https://github.com/Erasmus-CTM/ctm-assessment).
 
@@ -13,12 +13,15 @@ Oppsettet er hentet fra [ingmat3a_ntnu](https://github.com/aacchhee/ingmat3a_ntn
 
 ## Innhold og kilder
 
+Nettstedet inneholder bare ukesidene med oppgaver og materiell. Etter ønske fra
+emneansvarlig ligger obligatoriske innleveringer og eksamensoppgaver ikke her
+(svarene i oppgavene er dessuten synlige i sidekilden).
+
 | På nettstedet | Kilde (2026-materialet) |
 |---|---|
 | Forside og ukeplaner (`_includes/ukeNN/plan.md`) | Framdriftsplan og wiki-framdriftsplan Matte 2B, semesterplan 2027 (utkast) |
 | Oppgaver (`_includes/ukeNN/oppgaver.md`) | Flervalgsoppgaver 1–13 med fasit (2B-versjonene for sett 10–13) |
-| Innleveringer (`_includes/innleveringer/`) | Innlevering 1–4 (2B-versjonen av innlevering 4), notebooken til innlevering 3 i `assets/` |
-| «Materiell» på ukesidene (`_includes/ukeNN/materiell.md`) | PDF-er fra [fremdriftsplanen 2026 på wikien](https://wiki.math.ntnu.no/tma4411/2026v/fremdriftsplan), kopiert til `assets/materiell/`: lysark, plenumsregning med notater, prøveeksamen med LF, info om emnet og innleveringsarkene |
+| «Materiell» på ukesidene (`_includes/ukeNN/materiell.md`) | PDF-er fra [fremdriftsplanen 2026 på wikien](https://wiki.math.ntnu.no/tma4411/2026v/fremdriftsplan), kopiert til `assets/materiell/`: lysark, plenumsregning med notater og info om emnet |
 
 Materiellet fra 2026 er plassert på ukesiden med samme tema. Plenumsregningen
 gikk annenhver uke og repeterte stoffet fra ukene før, så den står på uken den
@@ -36,8 +39,7 @@ har
   konklusjonen i den opprinnelige flervalgsversjonen.
 
 Egendefinerte sjekkere (`mode: custom`) har `tests:` som kjøres ved
-`quarto render`. Innleveringene er statiske oppgavetekster uten automatisk
-retting og uten løsningsforslag.
+`quarto render`.
 
 ## Sidestruktur
 
@@ -46,7 +48,6 @@ i `_includes/`:
 
 ```text
 pages/ukeNN.qmd        -> _includes/ukeNN/plan.md + oppgaver.md (to faner)
-pages/innleveringN.qmd -> _includes/innleveringer/innleveringN.md
 pages/ide.qmd          -> _includes/ide/setup.md + manual.md
 ```
 
