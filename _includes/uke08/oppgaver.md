@@ -217,6 +217,17 @@ $$
 u_{n+1}=u_n+h\,(w_1k_1+w_2k_2),\quad k_1=f(t_n,u_n),\quad k_2=f(t_n+a\,h,\ u_n+b\,h\,k_1).
 $$
 
+Steget i løkken i koden består av disse linjene, der `tn` er $t_n$,
+`sol_o` er $u_n$ og `sol_n` er $u_{n+1}$:
+
+- `k1 = odefile(tn, sol_o)`
+- `k2 = odefile(tn + 2/3*h, sol_o + 2/3*h*k1)`
+- `sol_n = sol_o + 1/4*h*k1 + 3/4*h*k2`
+
+Cellen tester metoden på $y'=t-y$, $y(0)=1$, med eksakt løsning
+$y(t)=t-1+2e^{-t}$, og skriver ut feilen i $t=1$ for $N=10,20,40,80$ steg
+($h=1/N$).
+
 :::
 
 ```{pyodide-python}

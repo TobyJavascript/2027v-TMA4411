@@ -85,7 +85,16 @@ Taylorutvikling i uke 8.
 
 Funksjonen `RKF` nedenfor implementerer en trestegs Runge–Kutta-metode for
 $y'=f(t,y)$, der `odefile(t, y)` beregner $f(t,y)$. Cellen tester metoden på
-$y'=t-y$, $y(0)=1$, med eksakt løsning $y(t)=t-1+2e^{-t}$.
+$y'=t-y$, $y(0)=1$, med eksakt løsning $y(t)=t-1+2e^{-t}$, og skriver ut
+feilen i $t=1$ og forholdet mellom feilene når $h$ halveres.
+
+Steget i løkken i koden består av disse linjene, der `tn` er $t_n$,
+`sol_o` er $u_n$ og `sol_n` er $u_{n+1}$:
+
+- `k1 = odefile(tn, sol_o)`
+- `k2 = odefile(tn + 1/3*h, sol_o + 1/3*h*k1)`
+- `k3 = odefile(tn + h, sol_o - h*k1 + 2*h*k2)`
+- `sol_n = sol_o + 1/6*h*k1 + 2/3*h*k2 + 1/6*h*k3`
 
 :::
 
