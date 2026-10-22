@@ -55,7 +55,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-contrib/ai-feedback-0.9.0/ai-feedback.js"></script>
 <link href="../site_libs/quarto-contrib/ai-feedback-0.9.0/ai-feedback.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/ctm-runtime-0.9.0/pyodide-runtime.js"></script>
-<script src="../site_libs/quarto-contrib/ctm-checkers-0.1.1.dev0+be41199f/ctm-checkers.js"></script>
+<script src="../site_libs/quarto-contrib/ctm-checkers-0.6.0/ctm-checkers.js"></script>
 <script src="../site_libs/quarto-contrib/ctm-locale-0.9.0/ctm-locale.js"></script>
 <script src="../site_libs/quarto-contrib/ctm-locale-0.9.0/common.js"></script>
 <script src="../site_libs/quarto-contrib/ctm-locale-math-exercise-0.9.0/math-exercise.js"></script>
@@ -285,41 +285,6 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Innleveringer</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Slå på delen">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/innlevering1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Innlevering 1</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/innlevering2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Innlevering 2</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/innlevering3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Innlevering 3</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pages/innlevering4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Innlevering 4</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -409,32 +374,32 @@ window.Quarto = {
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Oppgavene bygger på flervalgsoppgavesett 2 fra 2026, omformulert slik at du må regne deg fram til svaret i stedet for å velge blant alternativer. Svar, trykk <strong>Sjekk</strong>, og bruk eventuelt <strong>Tilbakemelding</strong> for et hint. Åpne løsningsforslaget først når du har prøvd selv.</p>
 <div id="uke02-basis-context" class="math-exercise-context">
-<p><strong>Begreper i denne uken.</strong> En <em>basis</em> for et vektorrom (eller underrom) <span data-ai-feedback-tex="W" data-ai-feedback-display="false"><span class="math inline">\(W\)</span></span> er en lineært uavhengig mengde som spenner <span data-ai-feedback-tex="W" data-ai-feedback-display="false"><span class="math inline">\(W\)</span></span>. Alle basiser for <span data-ai-feedback-tex="W" data-ai-feedback-display="false"><span class="math inline">\(W\)</span></span> har like mange elementer, og dette tallet er <em>dimensjonen</em> <span data-ai-feedback-tex="\dim W" data-ai-feedback-display="false"><span class="math inline">\(\dim W\)</span></span>.</p>
-<p>For en <span data-ai-feedback-tex="m\times n" data-ai-feedback-display="false"><span class="math inline">\(m\times n\)</span></span>-matrise <span data-ai-feedback-tex="M" data-ai-feedback-display="false"><span class="math inline">\(M\)</span></span> er</p>
+<p><strong>Begreper i denne uken.</strong> En <em>basis</em> for et vektorrom (eller underrom) <span data-ai-feedback-display="false" data-ai-feedback-tex="W"><span class="math inline">\(W\)</span></span> er en lineært uavhengig mengde som spenner <span data-ai-feedback-display="false" data-ai-feedback-tex="W"><span class="math inline">\(W\)</span></span>. Alle basiser for <span data-ai-feedback-display="false" data-ai-feedback-tex="W"><span class="math inline">\(W\)</span></span> har like mange elementer, og dette tallet er <em>dimensjonen</em> <span data-ai-feedback-display="false" data-ai-feedback-tex="\dim W"><span class="math inline">\(\dim W\)</span></span>.</p>
+<p>For en <span data-ai-feedback-display="false" data-ai-feedback-tex="m\times n"><span class="math inline">\(m\times n\)</span></span>-matrise <span data-ai-feedback-display="false" data-ai-feedback-tex="M"><span class="math inline">\(M\)</span></span> er</p>
 <ul>
-<li><em>radrommet</em> <span data-ai-feedback-tex="\operatorname{Row}M\subseteq\mathbb{R}^n" data-ai-feedback-display="false"><span class="math inline">\(\operatorname{Row}M\subseteq\mathbb{R}^n\)</span></span> spennet av radene,</li>
-<li><em>kolonnerommet</em> <span data-ai-feedback-tex="\operatorname{Col}M\subseteq\mathbb{R}^m" data-ai-feedback-display="false"><span class="math inline">\(\operatorname{Col}M\subseteq\mathbb{R}^m\)</span></span> spennet av kolonnene,</li>
-<li><em>nullrommet</em> <span data-ai-feedback-tex="\operatorname{Null}M=\{x\in\mathbb{R}^n\mid Mx=0\}" data-ai-feedback-display="false"><span class="math inline">\(\operatorname{Null}M=\{x\in\mathbb{R}^n\mid Mx=0\}\)</span></span>.</li>
+<li><em>radrommet</em> <span data-ai-feedback-display="false" data-ai-feedback-tex="\operatorname{Row}M\subseteq\mathbb{R}^n"><span class="math inline">\(\operatorname{Row}M\subseteq\mathbb{R}^n\)</span></span> spennet av radene,</li>
+<li><em>kolonnerommet</em> <span data-ai-feedback-display="false" data-ai-feedback-tex="\operatorname{Col}M\subseteq\mathbb{R}^m"><span class="math inline">\(\operatorname{Col}M\subseteq\mathbb{R}^m\)</span></span> spennet av kolonnene,</li>
+<li><em>nullrommet</em> <span data-ai-feedback-display="false" data-ai-feedback-tex="\operatorname{Null}M=\{x\in\mathbb{R}^n\mid Mx=0\}"><span class="math inline">\(\operatorname{Null}M=\{x\in\mathbb{R}^n\mid Mx=0\}\)</span></span>.</li>
 </ul>
-<p>Radoperasjoner endrer ikke radrommet, så de ikke-null radene i trappeformen er en basis for <span data-ai-feedback-tex="\operatorname{Row}M" data-ai-feedback-display="false"><span class="math inline">\(\operatorname{Row}M\)</span></span>. Pivotkolonnene i den <em>opprinnelige</em> matrisen er en basis for <span data-ai-feedback-tex="\operatorname{Col}M" data-ai-feedback-display="false"><span class="math inline">\(\operatorname{Col}M\)</span></span>. Rangteoremet sier at <span data-ai-feedback-tex="\operatorname{rang}M+\dim\operatorname{Null}M=n" data-ai-feedback-display="false"><span class="math inline">\(\operatorname{rang}M+\dim\operatorname{Null}M=n\)</span></span>.</p>
-<p>En delmengde <span data-ai-feedback-tex="W\subseteq V" data-ai-feedback-display="false"><span class="math inline">\(W\subseteq V\)</span></span> er et <em>underrom</em> hvis den inneholder <span data-ai-feedback-tex="0" data-ai-feedback-display="false"><span class="math inline">\(0\)</span></span> og er lukket under addisjon og multiplikasjon med skalar.</p>
+<p>Radoperasjoner endrer ikke radrommet, så de ikke-null radene i trappeformen er en basis for <span data-ai-feedback-display="false" data-ai-feedback-tex="\operatorname{Row}M"><span class="math inline">\(\operatorname{Row}M\)</span></span>. Pivotkolonnene i den <em>opprinnelige</em> matrisen er en basis for <span data-ai-feedback-display="false" data-ai-feedback-tex="\operatorname{Col}M"><span class="math inline">\(\operatorname{Col}M\)</span></span>. Rangteoremet sier at <span data-ai-feedback-display="false" data-ai-feedback-tex="\operatorname{rang}M+\dim\operatorname{Null}M=n"><span class="math inline">\(\operatorname{rang}M+\dim\operatorname{Null}M=n\)</span></span>.</p>
+<p>En delmengde <span data-ai-feedback-display="false" data-ai-feedback-tex="W\subseteq V"><span class="math inline">\(W\subseteq V\)</span></span> er et <em>underrom</em> hvis den inneholder <span data-ai-feedback-display="false" data-ai-feedback-tex="0"><span class="math inline">\(0\)</span></span> og er lukket under addisjon og multiplikasjon med skalar.</p>
 </div>
 <section id="oppgave-1-radrom-kolonnerom-og-nullrom" class="level3">
 <h3 class="anchored" data-anchor-id="oppgave-1-radrom-kolonnerom-og-nullrom">Oppgave 1 – radrom, kolonnerom og nullrom</h3>
 <div id="uke02-opp1-context" class="math-exercise-context">
 <p>La</p>
-<p><span data-ai-feedback-tex="
+<p><span data-ai-feedback-display="true" data-ai-feedback-tex="
 M=\begin{pmatrix}-3&amp;-1&amp;2&amp;0\\1&amp;3&amp;-2&amp;-4\\0&amp;-2&amp;1&amp;3\\-4&amp;-1&amp;1&amp;0\end{pmatrix}
-" data-ai-feedback-display="true"><span class="math display">\[
+"><span class="math display">\[
 M=\begin{pmatrix}-3&amp;-1&amp;2&amp;0\\1&amp;3&amp;-2&amp;-4\\0&amp;-2&amp;1&amp;3\\-4&amp;-1&amp;1&amp;0\end{pmatrix}
 \]</span></span></p>
-<p>over <span data-ai-feedback-tex="\mathbb{R}" data-ai-feedback-display="false"><span class="math inline">\(\mathbb{R}\)</span></span>. Den reduserte trappeformen til <span data-ai-feedback-tex="M" data-ai-feedback-display="false"><span class="math inline">\(M\)</span></span> er</p>
-<p><span data-ai-feedback-tex="
+<p>over <span data-ai-feedback-display="false" data-ai-feedback-tex="\mathbb{R}"><span class="math inline">\(\mathbb{R}\)</span></span>. Den reduserte trappeformen til <span data-ai-feedback-display="false" data-ai-feedback-tex="M"><span class="math inline">\(M\)</span></span> er</p>
+<p><span data-ai-feedback-display="true" data-ai-feedback-tex="
 \begin{pmatrix}1&amp;0&amp;0&amp;1/3\\0&amp;1&amp;0&amp;-5/3\\0&amp;0&amp;1&amp;-1/3\\0&amp;0&amp;0&amp;0\end{pmatrix}.
-" data-ai-feedback-display="true"><span class="math display">\[
+"><span class="math display">\[
 \begin{pmatrix}1&amp;0&amp;0&amp;1/3\\0&amp;1&amp;0&amp;-5/3\\0&amp;0&amp;1&amp;-1/3\\0&amp;0&amp;0&amp;0\end{pmatrix}.
 \]</span></span></p>
-<p>Vektorer i <span data-ai-feedback-tex="\mathbb{R}^4" data-ai-feedback-display="false"><span class="math inline">\(\mathbb{R}^4\)</span></span> skrives inn som rader eller kolonner i en matrise med justerbar størrelse. Brøker kan skrives som <code>1/3</code>.</p>
+<p>Vektorer i <span data-ai-feedback-display="false" data-ai-feedback-tex="\mathbb{R}^4"><span class="math inline">\(\mathbb{R}^4\)</span></span> skrives inn som rader eller kolonner i en matrise med justerbar størrelse. Brøker kan skrives som <code>1/3</code>.</p>
 </div>
 <section id="a-rangen" class="level4">
 <h4 class="anchored" data-anchor-id="a-rangen">a) Rangen</h4>
@@ -578,14 +543,14 @@ M=\begin{pmatrix}-3&amp;-1&amp;2&amp;0\\1&amp;3&amp;-2&amp;-4\\0&amp;-2&amp;1&am
 <section id="oppgave-2-summer-unioner-og-snitt-av-underrom" class="level3">
 <h3 class="anchored" data-anchor-id="oppgave-2-summer-unioner-og-snitt-av-underrom">Oppgave 2 – summer, unioner og snitt av underrom</h3>
 <div id="uke02-opp2-context" class="math-exercise-context">
-<p>La <span data-ai-feedback-tex="V" data-ai-feedback-display="false"><span class="math inline">\(V\)</span></span> være et vektorrom med to underrom <span data-ai-feedback-tex="W_1" data-ai-feedback-display="false"><span class="math inline">\(W_1\)</span></span> og <span data-ai-feedback-tex="W_2" data-ai-feedback-display="false"><span class="math inline">\(W_2\)</span></span>. Vi ser på</p>
-<p><span data-ai-feedback-tex="
+<p>La <span data-ai-feedback-display="false" data-ai-feedback-tex="V"><span class="math inline">\(V\)</span></span> være et vektorrom med to underrom <span data-ai-feedback-display="false" data-ai-feedback-tex="W_1"><span class="math inline">\(W_1\)</span></span> og <span data-ai-feedback-display="false" data-ai-feedback-tex="W_2"><span class="math inline">\(W_2\)</span></span>. Vi ser på</p>
+<p><span data-ai-feedback-display="true" data-ai-feedback-tex="
 \begin{aligned}
 W_1+W_2&amp;=\{w_1+w_2\mid w_1\in W_1,\ w_2\in W_2\},\\
 W_1\cup W_2&amp;=\{w\in V\mid w\in W_1\text{ eller }w\in W_2\},\\
 W_1\cap W_2&amp;=\{w\in V\mid w\in W_1\text{ og }w\in W_2\}.
 \end{aligned}
-" data-ai-feedback-display="true"><span class="math display">\[
+"><span class="math display">\[
 \begin{aligned}
 W_1+W_2&amp;=\{w_1+w_2\mid w_1\in W_1,\ w_2\in W_2\},\\
 W_1\cup W_2&amp;=\{w\in V\mid w\in W_1\text{ eller }w\in W_2\},\\
@@ -681,12 +646,12 @@ Antall vektorer i \(\mathcal{B}_1\cup\mathcal{B}_2\): <input type="text" id="mat
 <h3 class="anchored" data-anchor-id="oppgave-3-en-matrise-med-for-få-egenvektorer">Oppgave 3 – en matrise med for få egenvektorer</h3>
 <div id="uke02-opp3-context" class="math-exercise-context">
 <p>La</p>
-<p><span data-ai-feedback-tex="
+<p><span data-ai-feedback-display="true" data-ai-feedback-tex="
 A=\begin{pmatrix}2&amp;1&amp;0\\0&amp;2&amp;1\\0&amp;0&amp;2\end{pmatrix}.
-" data-ai-feedback-display="true"><span class="math display">\[
+"><span class="math display">\[
 A=\begin{pmatrix}2&amp;1&amp;0\\0&amp;2&amp;1\\0&amp;0&amp;2\end{pmatrix}.
 \]</span></span></p>
-<p>Det karakteristiske polynomet er <span data-ai-feedback-tex="p(\lambda)=\det(A-\lambda I)" data-ai-feedback-display="false"><span class="math inline">\(p(\lambda)=\det(A-\lambda I)\)</span></span>. Egenrommet til en egenverdi <span data-ai-feedback-tex="\lambda" data-ai-feedback-display="false"><span class="math inline">\(\lambda\)</span></span> er <span data-ai-feedback-tex="\operatorname{Null}(A-\lambda I)" data-ai-feedback-display="false"><span class="math inline">\(\operatorname{Null}(A-\lambda I)\)</span></span>. I svarfeltene skriver du variabelen som <code>x</code> i stedet for <span data-ai-feedback-tex="\lambda" data-ai-feedback-display="false"><span class="math inline">\(\lambda\)</span></span>.</p>
+<p>Det karakteristiske polynomet er <span data-ai-feedback-display="false" data-ai-feedback-tex="p(\lambda)=\det(A-\lambda I)"><span class="math inline">\(p(\lambda)=\det(A-\lambda I)\)</span></span>. Egenrommet til en egenverdi <span data-ai-feedback-display="false" data-ai-feedback-tex="\lambda"><span class="math inline">\(\lambda\)</span></span> er <span data-ai-feedback-display="false" data-ai-feedback-tex="\operatorname{Null}(A-\lambda I)"><span class="math inline">\(\operatorname{Null}(A-\lambda I)\)</span></span>. I svarfeltene skriver du variabelen som <code>x</code> i stedet for <span data-ai-feedback-display="false" data-ai-feedback-tex="\lambda"><span class="math inline">\(\lambda\)</span></span>.</p>
 </div>
 <section id="a-det-karakteristiske-polynomet" class="level4">
 <h4 class="anchored" data-anchor-id="a-det-karakteristiske-polynomet">a) Det karakteristiske polynomet</h4>
@@ -775,7 +740,7 @@ A-2I=\begin{pmatrix}0&amp;1&amp;0\\0&amp;0&amp;1\\0&amp;0&amp;0\end{pmatrix},\qq
 <section id="oppgave-4-symmetriske-matriser" class="level3">
 <h3 class="anchored" data-anchor-id="oppgave-4-symmetriske-matriser">Oppgave 4 – symmetriske matriser</h3>
 <div id="uke02-opp4-context" class="math-exercise-context">
-<p>En <span data-ai-feedback-tex="n\times n" data-ai-feedback-display="false"><span class="math inline">\(n\times n\)</span></span>-matrise <span data-ai-feedback-tex="M" data-ai-feedback-display="false"><span class="math inline">\(M\)</span></span> er <em>symmetrisk</em> hvis <span data-ai-feedback-tex="M=M^T" data-ai-feedback-display="false"><span class="math inline">\(M=M^T\)</span></span>. Regneregler for transponering: <span data-ai-feedback-tex="(A+B)^T=A^T+B^T" data-ai-feedback-display="false"><span class="math inline">\((A+B)^T=A^T+B^T\)</span></span>, <span data-ai-feedback-tex="(AB)^T=B^TA^T" data-ai-feedback-display="false"><span class="math inline">\((AB)^T=B^TA^T\)</span></span>, <span data-ai-feedback-tex="(rA)^T=rA^T" data-ai-feedback-display="false"><span class="math inline">\((rA)^T=rA^T\)</span></span> og <span data-ai-feedback-tex="(A^T)^T=A" data-ai-feedback-display="false"><span class="math inline">\((A^T)^T=A\)</span></span>.</p>
+<p>En <span data-ai-feedback-display="false" data-ai-feedback-tex="n\times n"><span class="math inline">\(n\times n\)</span></span>-matrise <span data-ai-feedback-display="false" data-ai-feedback-tex="M"><span class="math inline">\(M\)</span></span> er <em>symmetrisk</em> hvis <span data-ai-feedback-display="false" data-ai-feedback-tex="M=M^T"><span class="math inline">\(M=M^T\)</span></span>. Regneregler for transponering: <span data-ai-feedback-display="false" data-ai-feedback-tex="(A+B)^T=A^T+B^T"><span class="math inline">\((A+B)^T=A^T+B^T\)</span></span>, <span data-ai-feedback-display="false" data-ai-feedback-tex="(AB)^T=B^TA^T"><span class="math inline">\((AB)^T=B^TA^T\)</span></span>, <span data-ai-feedback-display="false" data-ai-feedback-tex="(rA)^T=rA^T"><span class="math inline">\((rA)^T=rA^T\)</span></span> og <span data-ai-feedback-display="false" data-ai-feedback-tex="(A^T)^T=A"><span class="math inline">\((A^T)^T=A\)</span></span>.</p>
 </div>
 <section id="a-produkter-og-summer" class="level4">
 <h4 class="anchored" data-anchor-id="a-produkter-og-summer">a) Produkter og summer</h4>

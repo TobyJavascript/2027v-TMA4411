@@ -3,12 +3,16 @@
  * Loaded on pages with a tabset or a reveal unless ctm-assessment:
  * tab-links: false (lua/ui.lua).
  *
- * A link to an id inside tabs or closed <details> (a heading, an anchor, an
- * exercise, a tab title's .ctm-tab-target) opens every enclosing tab, nested
- * ones too, and every enclosing <details>; then it scrolls the target below
- * the header and focuses it. This works for links in the page (the address
- * bar shows the id: pushState), links from other pages, Back/Forward and
- * reloads. It runs after Quarto's own handlers: a link wins over the tab a
+ * A link to an id inside tabs, closed <details> or a collapsed callout (a
+ * heading, an anchor, an exercise, a tab title's .ctm-tab-target) opens every
+ * enclosing tab, nested ones too, every enclosing <details> and every
+ * enclosing collapsed Quarto callout, in any nesting (a callout inside a tab
+ * or a reveal, a reveal inside a callout; a link to the callout itself opens
+ * it, as a link to a <details> does); then it scrolls the target below
+ * the header and focuses it; the browser's own jump to the fragment lands
+ * there too (the target's scroll-margin-top). This works for links in the
+ * page (the address bar shows the id: pushState), links from other pages,
+ * Back/Forward and reloads. It runs after Quarto's own handlers: a link wins over the tab a
  * grouped tabset remembers, for this view, without changing what it
  * remembers. While editors, boards and Python output change the layout above
  * the target, it stays in place, for 2 s at most or until the reader scrolls,
@@ -17,7 +21,13 @@
  * Focus: a tab title's target focuses its tab panel, or the panel's first
  * heading when that is in view (the tab row stays visible); a section's
  * heading, a <details>' summary, or else the target itself (tabindex -1 while
- * focused). Each history entry keeps its scroll position and open tabs in
+ * focused). The browser's own jump to the fragment, late in WebKit, runs the
+ * focusing steps of "scroll to the fragment": a target that cannot take focus
+ * (a tab title's .ctm-tab-target, an empty anchor) leaves nothing focused. So
+ * while the page settles (2 s, until the reader scrolls, types, clicks or
+ * touches), focus that falls to the page goes back where the script put it;
+ * so it does when a tab that was switched back is opened again. Each history
+ * entry keeps its scroll position and open tabs in
  * history.state.__quartoTabPosition, as the courses' script did; a reload
  * restores them, unless the entry still showed its link's target: then it
  * handles the link again (coi-serviceworker reloads a first visit).
@@ -79,13 +89,24 @@
     if (!hash || hash === '#') return null;
     try { return document.getElementById(decodeURIComponent(hash.slice(1))); } catch (error) { return null; }
   }
-  // The tab panes around an element, outer first (DOM order opens them in turn).
-  function panesOf(element) {
-    var panes = [];
+  // A collapsible Quarto callout keeps its content in a `.callout-collapse`
+  // (Bootstrap's `collapse`, `show` once open); its header is the trigger.
+  function shut(node) {
+    return !!node.classList && node.classList.contains('callout-collapse')
+      && (node.classList.contains('collapsing') || !node.classList.contains('show'));
+  }
+  // What hides an element until it is opened, outer first (a tab pane, the
+  // content of a collapsible callout: in DOM order they open in turn, so
+  // that one inside another opens inside an open one). An element that is a
+  // callout also has its own content.
+  function layersOf(element) {
+    var layers = [], own = element.classList && element.classList.contains('callout')
+      ? element.querySelector(':scope > .callout-collapse') : null;
+    if (own) layers.push(own);
     for (var node = element; node; node = node.parentElement) {
-      if (node.classList && node.classList.contains('tab-pane')) panes.unshift(node);
+      if (node.classList && (node.classList.contains('tab-pane') || node.classList.contains('callout-collapse'))) layers.unshift(node);
     }
-    return panes;
+    return layers;
   }
 
   function snapshot() {
@@ -136,11 +157,71 @@
       Tab.getOrCreateInstance(tab).show();
     }).then(function () { if (!pane.classList.contains('active')) activate(pane, tab); });
   }
-  function openAll(target, panes) {
+  // Shows a callout's content through Bootstrap (its events; it sets the
+  // header's ARIA and `collapsed` class), without clicking the header. Without
+  // Bootstrap, or when it does not finish, the content and header are marked
+  // open by hand.
+  function expand(body) {
+    body.classList.remove('collapsing');
+    body.classList.add('collapse', 'show');
+    body.style[body.classList.contains('collapse-horizontal') ? 'width' : 'height'] = '';
+    var header = body.parentElement && body.parentElement.querySelector(':scope > .callout-header');
+    if (header) {
+      header.classList.remove('collapsed');
+      header.setAttribute('aria-expanded', 'true');
+    }
+  }
+  function openCallout(body) {
+    if (!shut(body)) return Promise.resolve();
+    var Collapse = window.bootstrap && window.bootstrap.Collapse;
+    if (!Collapse) {
+      expand(body);
+      return Promise.resolve();
+    }
+    return new Promise(function (resolve) {
+      var finished = false;
+      var done = function (event) {
+        // A callout inside this one reports to it too.
+        if (event && event.target !== body) return;
+        if (finished) return;
+        finished = true;
+        clearTimeout(timer);
+        body.removeEventListener('shown.bs.collapse', done);
+        body.removeEventListener('hidden.bs.collapse', done);
+        resolve();
+      };
+      var timer = setTimeout(function () {
+        // Complete Bootstrap's own queued transition first, just as its
+        // transition-end emulation does. Its completion owns the instance's
+        // transition state, classes and inline size; changing just the DOM
+        // would leave its next show/hide stuck or let a late hide close us.
+        if (body.classList.contains('collapsing')) body.dispatchEvent(new Event('transitionend'));
+        if (!finished) {
+          expand(body);
+          done();
+        }
+      }, 600);
+      body.addEventListener('shown.bs.collapse', done);
+      body.addEventListener('hidden.bs.collapse', done);
+      // show() ignores an in-flight hide (and an in-flight show). Wait for
+      // either transition to settle, then open again if it was a hide.
+      if (!body.classList.contains('collapsing')) Collapse.getOrCreateInstance(body, {toggle: false}).show();
+    }).then(function () { if (shut(body)) return openCallout(body); });
+  }
+  function isOpen(layer) {
+    return layer.classList.contains('tab-pane') ? layer.classList.contains('active') : !shut(layer);
+  }
+  function openLayer(layer) {
+    return layer.classList.contains('tab-pane') ? openPane(layer) : openCallout(layer);
+  }
+  function openLayers(layers) {
+    return layers.reduce(function (done, layer) { return done.then(function () { return openLayer(layer); }); }, Promise.resolve());
+  }
+  function openAll(target, layers) {
     for (var node = target; node; node = node.parentElement) {
       if (node.tagName === 'DETAILS' && !node.open) node.open = true;
     }
-    return panes.reduce(function (done, pane) { return done.then(function () { return openPane(pane); }); }, Promise.resolve());
+    return openLayers(layers);
   }
 
   // Below a fixed or sticky header (its full height, also while headroom has
@@ -172,6 +253,36 @@
   }
   function scrollTo(element) {
     scrollToY(window.scrollY + element.getBoundingClientRect().top - clearance());
+  }
+  // The browser's own jump to the address's fragment lands where the script
+  // puts its target. WebKit still jumps to it once its pane is laid out, also
+  // after the script has scrolled (a busy page lays out late): the target at
+  // the viewport's top, a tab title's tab row above it, out of view. The
+  // target's scroll-margin-top places the anchor below the header instead
+  // (negative where a section's heading has a top margin). It follows the
+  // target, the anchor and the header when they reflow later (a web font, a
+  // narrower window, a rotated phone, Quarto's late section:target offset):
+  // a jump then still lands there.
+  var margined = null;
+  function margin(target, anchor) {
+    if (!target.getClientRects().length || !anchor.getClientRects().length) return;
+    var offset = target.getBoundingClientRect().top - anchor.getBoundingClientRect().top;
+    target.style.scrollMarginTop = Math.round(offset + clearance()) + 'px';
+  }
+  function landAt(target, anchor) {
+    if (target !== targetFor(location.hash)) return;
+    if (margined) {
+      if (margined.observer) margined.observer.disconnect();
+      if (margined.element !== target) margined.element.style.scrollMarginTop = margined.value;
+    }
+    if (!margined || margined.element !== target) margined = {element: target, value: target.style.scrollMarginTop};
+    margin(target, anchor);
+    margined.observer = typeof ResizeObserver === 'function' ? new ResizeObserver(function () { margin(target, anchor); }) : null;
+    if (!margined.observer) return;
+    margined.observer.observe(anchor);
+    if (anchor !== target) margined.observer.observe(target);
+    var header = document.getElementById('quarto-header');
+    if (header) margined.observer.observe(header);
   }
   function inView(element) {
     var rect = element.getBoundingClientRect();
@@ -209,6 +320,31 @@
     focusIt();
   }
 
+  // Focus that falls to the page (nothing focused) while the page settles goes
+  // back to the target's focus (see the top).
+  var kept = null;
+  function unkeep() {
+    if (!kept) return;
+    document.removeEventListener('focusout', kept.lost, true);
+    clearTimeout(kept.timer);
+    kept = null;
+  }
+  function nothingFocused() {
+    var active = document.activeElement;
+    return !active || active === document.body || active === document.documentElement;
+  }
+  function keepFocus(target, current) {
+    unkeep();
+    var lost = function (event) {
+      if (event.relatedTarget) return;
+      setTimeout(function () {
+        if (kept && kept.lost === lost && !moved && current() && nothingFocused() && target.getClientRects().length) focus(target);
+      }, 0);
+    };
+    kept = {lost: lost, timer: setTimeout(unkeep, PIN_MS)};
+    document.addEventListener('focusout', lost, true);
+  }
+
   function unpin() {
     if (!pinned) return;
     pinned.observer.disconnect();
@@ -231,8 +367,8 @@
     STOP_PIN.forEach(function (type) { window.addEventListener(type, unpin, {capture: true, passive: true}); });
   }
 
-  function allActive(panes) {
-    return panes.every(function (pane) { return pane.classList.contains('active'); });
+  function allOpen(layers) {
+    return layers.every(isOpen);
   }
 
   // Restores a history entry's position, or opens, scrolls to and focuses a target.
@@ -242,10 +378,9 @@
     restoring = true;
     clearTimeout(scrollTimer);
     unpin();
-    var panes = position ? position.panes.map(function (id) { return document.getElementById(id); }).filter(Boolean)
-      : target ? panesOf(target) : [];
-    var opened = position ? panes.reduce(function (done, pane) { return done.then(function () { return openPane(pane); }); }, Promise.resolve())
-      : target ? openAll(target, panes) : Promise.resolve();
+    var layers = position ? position.panes.map(function (id) { return document.getElementById(id); }).filter(Boolean)
+      : target ? layersOf(target) : [];
+    var opened = position ? openLayers(layers) : target ? openAll(target, layers) : Promise.resolve();
     var anchor = null;
     return opened.then(function () {
       if (!current()) return null;
@@ -259,8 +394,10 @@
         moved = false;
       } else if (target && target.getClientRects().length) {
         anchor = anchorOf(target);
+        landAt(target, anchor);
         scrollTo(anchor);
         focus(target);
+        keepFocus(target, current);
         target.setAttribute('data-ctm-nav', how);
         pin(anchor);
         showing = target === targetFor(location.hash) ? location.hash : '';
@@ -271,9 +408,14 @@
       if (!current()) return null;
       // Something switched a tab back (a grouped tabset restoring its
       // remembered choice): the link wins.
-      if (target && !position && !allActive(panes)) {
-        return openAll(target, panes).then(frame).then(function () {
-          if (current() && anchor) { scrollTo(anchor); pin(anchor); }
+      if (target && !position && !allOpen(layers)) {
+        return openAll(target, layers).then(frame).then(function () {
+          if (!current() || !anchor) return;
+          landAt(target, anchor);
+          scrollTo(anchor);
+          // Its pane was hidden, which took the focus away.
+          if (!moved && nothingFocused()) focus(target);
+          pin(anchor);
         });
       }
       return null;
@@ -347,3 +489,4 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
 })();
+

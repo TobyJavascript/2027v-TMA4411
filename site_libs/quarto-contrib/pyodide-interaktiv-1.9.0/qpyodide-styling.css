@@ -1,0 +1,967 @@
+/* qpyodide-styling.css – styling for the `pyodide-interaktiv` extension
+ *
+ * Colors come from the Bootstrap/Quarto variables (var(--bs-…)), so the
+ * cells automatically adapt to the light/dark theme. Every variable has a
+ * fallback for pages without Bootstrap. */
+
+/* ---------------------------------------------------------------------- */
+/* Editor & console                                                       */
+
+/* Scoped to this extension's editors: other Monaco editors on the page
+   (py-exercise) keep their own look. */
+.qpyodide-editor .monaco-editor pre {
+  background-color: unset !important;
+}
+
+.qpyodide-editor {
+  border: 1px solid var(--bs-border-color, #dee2e6);
+}
+
+/* Light mode: Monaco editor (code area + gutter) — uniformly soft yellow */
+.qpyodide-editor .monaco-editor.vs .monaco-editor-background,
+.qpyodide-editor .monaco-editor.vs .overflow-guard,
+.qpyodide-editor .monaco-editor.vs .margin {
+  background-color: #fffde7 !important;
+}
+
+.qpyodide-editor-toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0.25rem;
+  background-color: #bdecb6;
+  color: var(--bs-body-color, #212529);
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+/* Read-only cells: no green tint, just neutral gray */
+.qpyodide-toolbar-readonly {
+  background-color: var(--bs-secondary-bg, #e9ecef);
+}
+
+.qpyodide-editor-toolbar-left-buttons,
+.qpyodide-editor-toolbar-right-buttons {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.qpyodide-readonly-label {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  align-self: center;
+}
+
+.qpyodide-storage-status {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  align-self: center;
+}
+
+/* "Savable" state: nothing saved yet, but this cell would persist if the
+ * reader typed right now -- deliberately fainter than Saved/Restored so it
+ * reads as a passive hint, not an active confirmation. */
+.qpyodide-storage-status.qpyodide-storage-status-savable {
+  opacity: 0.45;
+  font-style: italic;
+}
+
+/* Extra code block ("+ Code block") */
+.qpyodide-extra-codeblock {
+  margin-top: 1rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Buttons                                                                */
+
+.qpyodide-button {
+  background-color: var(--bs-tertiary-bg, #eeeeee);
+  display: inline-block;
+  font-weight: 400;
+  text-decoration: none;
+  text-align: center;
+  color: var(--bs-body-color, #000);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  /* Common CTM button size, shared by all CTM components; set the
+     --ctm-button-* variables in your CSS or theme to change all of them. */
+  font-size: var(--ctm-button-font-size, .875rem);
+  padding: var(--ctm-button-padding-y, .375rem) var(--ctm-button-padding-x, .75rem);
+  line-height: var(--ctm-button-line-height, 1.5);
+  border-radius: var(--ctm-button-radius, var(--bs-border-radius, .375rem));
+  transition: color .15s ease-in-out, background-color .15s ease-in-out,
+              border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.qpyodide-button:hover {
+  color: var(--bs-body-color, #000);
+  background-color: var(--bs-secondary-bg, #d9dce0);
+  border-color: var(--bs-border-color, #c8ccd0);
+}
+
+.qpyodide-button:disabled,
+.qpyodide-button.disabled,
+fieldset:disabled .qpyodide-button {
+  pointer-events: none;
+  opacity: .65;
+}
+
+.qpyodide-button-reset,
+.qpyodide-button-copy,
+.qpyodide-button-feedback,
+.qpyodide-button-codeblock,
+.qpyodide-button-clear-saved,
+.qpyodide-button-save-cell {
+  color: var(--bs-body-color, #555);
+  opacity: 0.75;
+}
+
+.qpyodide-icon-run-code {
+  color: var(--bs-success, #0d9c29);
+}
+
+.qpyodide-icon-status-spinner {
+  color: var(--bs-primary, #7894c4);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Output areas                                                           */
+
+.qpyodide-output-code-stdout {
+  color: var(--bs-body-color, #111);
+}
+
+.qpyodide-output-code-stderr {
+  color: var(--bs-danger, #db4133);
+}
+
+.qpyodide-output-code-area.has-content {
+  border: 1px solid var(--bs-border-color, #000);
+  border-radius: 0.25rem;
+  background-color: var(--bs-tertiary-bg, #f8f9fa);
+  padding: 10px;
+  margin-top: 0.5rem;
+}
+
+.qpyodide-output-graph-area.has-content {
+  display: block;
+  visibility: visible;
+  border: 1px solid var(--bs-border-color, #000);
+  border-radius: 0.25rem;
+  padding: 10px;
+  margin-top: 0.5rem;
+}
+
+/* Rich HTML output (e.g. animation player, GIF) */
+.qpyodide-html-output {
+  margin-top: 0.5rem;
+  overflow-x: auto;
+}
+
+/* Loading indicator for non-interactive cells */
+.qpyodide-non-interactive-loading-container.qpyodide-cell-needs-evaluation,
+.qpyodide-non-interactive-loading-container.qpyodide-cell-evaluated {
+  justify-content: center;
+  display: flex;
+  background-color: var(--bs-tertiary-bg, rgba(250, 250, 250, 0.65));
+  border: 1px solid var(--bs-border-color, rgba(233, 236, 239, 0.65));
+  border-radius: 0.5rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* AI feedback                                                            */
+
+.qpyodide-output-feedback-area:not(:empty) {
+  background-color: var(--bs-warning-bg-subtle, #ffe9d6);
+  color: var(--bs-body-color, #000);
+  border: 1px solid var(--bs-border-color, #e0c5a8);
+  border-radius: 0.25rem;
+  padding: 10px;
+  margin-top: 0.5rem;
+}
+
+.qpyodide-feedback-header {
+  font-weight: 600;
+  text-decoration: underline;
+  margin-bottom: 0.75rem;
+}
+
+.qpyodide-feedback-body code {
+  background-color: var(--bs-tertiary-bg, #f4f4f4);
+}
+
+.qpyodide-feedback-code {
+  white-space: pre-wrap;
+  background-color: var(--bs-tertiary-bg, #f4f4f4);
+  color: var(--bs-body-color, #222);
+  border: 1px solid var(--bs-border-color, #ccc);
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 0.85em;
+  margin: 6px 0;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.qpyodide-feedback-error {
+  color: var(--bs-danger, #db4133);
+}
+
+.qpyodide-feedback-error-gear {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Local-storage autosave checkboxes (inside the settings gear panel)     */
+
+.qpyodide-storage-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Autosave-mode radios nested under the master "save in this browser"
+ * checkbox -- indented to read as sub-options, dimmed (not hidden) while
+ * the master is off so the reader's last choice stays visible. */
+.qpyodide-storage-mode-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-left: 1.4rem;
+}
+
+.qpyodide-storage-mode-group-disabled {
+  opacity: 0.55;
+}
+
+.qpyodide-storage-mode-group-disabled .qpyodide-storage-toggle-label {
+  cursor: default;
+}
+
+.qpyodide-storage-delete-btn {
+  align-self: flex-start;
+  margin-top: 0.15rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Settings panel (set up AI feedback)                                    */
+
+#qpyodide-status-message-area {
+  grid-column: 1 / -1;
+}
+
+#qpyodide-feedback-settings {
+  margin-top: 0.5rem;
+}
+
+.qpyodide-feedback-settings-status {
+  margin-left: 0.5rem;
+  color: var(--bs-success, #198754);
+  font-size: 0.85rem;
+}
+
+.qpyodide-feedback-panel {
+  margin-top: 0.5rem;
+  padding: 12px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: var(--bs-tertiary-bg, #f8f9fa);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 0.5rem;
+}
+
+.qpyodide-storage-settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.qpyodide-feedback-panel hr {
+  margin: 0.75rem 0;
+  border-color: var(--bs-border-color, #dee2e6);
+  opacity: 1;
+}
+
+.qpyodide-feedback-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.qpyodide-feedback-field > span {
+  flex: 0 0 130px;
+  font-size: 0.9rem;
+}
+
+.qpyodide-feedback-panel input:not([type="checkbox"]),
+.qpyodide-feedback-panel select {
+  padding: 0.25rem 0.5rem;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #000);
+  border: 1px solid var(--bs-border-color, #ced4da);
+  border-radius: 0.25rem;
+}
+
+.qpyodide-feedback-field > input,
+.qpyodide-feedback-field > select,
+.qpyodide-feedback-field > .qpyodide-feedback-inputrow {
+  flex: 1;
+}
+
+/* Input + button side by side (e.g. model field + "Fetch models") */
+.qpyodide-feedback-inputrow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.qpyodide-feedback-inputrow > input {
+  flex: 1;
+}
+
+/* Fetched model list */
+.qpyodide-feedback-modellist {
+  margin: 0 0 0.5rem 138px;
+  font-size: 0.85rem;
+}
+
+.qpyodide-feedback-modellist-info {
+  margin-bottom: 0.25rem;
+}
+
+.qpyodide-feedback-modellist label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.qpyodide-feedback-modellist select {
+  width: 100%;
+}
+
+.qpyodide-feedback-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.qpyodide-feedback-help {
+  margin-top: 0.75rem;
+  padding: 12px;
+  background-color: var(--bs-primary-bg-subtle, #f4f8ff);
+  border: 1px solid var(--bs-border-color, #cdddf5);
+  border-radius: 6px;
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Dark mode – full explicit overrides                                    */
+/*                                                                         */
+/* === HOW QUARTO LOADS CSS (theme: {light: X, dark: Y}) ===             */
+/*                                                                         */
+/* Three Bootstrap <link> tags in the rendered HTML:                      */
+/*   1. Flatly  – class="quarto-color-scheme"                             */
+/*      → DISABLED in dark mode (rel=disabled-stylesheet)                 */
+/*   2. Darkly  – class="quarto-color-alternate"                          */
+/*      → ENABLED in dark mode                                            */
+/*   3. Flatly again – class="quarto-color-scheme-extra"                  */
+/*      → ALWAYS disabled by Quarto JS on page load (both modes)          */
+/*                                                                         */
+/* Dark mode = Flatly (1) gone + Darkly (2) active.                       */
+/* BUT: Quarto's JS comment says "dark is layered on light, we don't      */
+/* disable primary!" → Flatly (1) STAYS active in dark mode!              */
+/* → Flatly AND Darkly run at the same time.                              */
+/*                                                                         */
+/* === WHY !important IS NECESSARY ===                                    */
+/*                                                                         */
+/* The extension CSS is written as inline <style> into the <head>,        */
+/* BEFORE the Bootstrap <link> tags. With equal specificity, the later    */
+/* rule in the DOM wins → Bootstrap overrides our rules.                  */
+/* Countermeasure: !important on all critical color/background values.    */
+/*                                                                         */
+/* === THE GRAY-BARS PROBLEM (Bootstrap's direct code rules) ===          */
+/*                                                                         */
+/* Bootstrap (Darkly) sets:                                               */
+/*   code { background-color: #f8f9fa; color: var(--bs-code-color); }     */
+/* This is a DIRECT rule on every <code> element.                         */
+/* Inherited color/background from the parent div does NOT beat direct    */
+/* rules → even body.quarto-dark .qpyodide-terminal { color } doesn't     */
+/* affect the <code> children as long as Bootstrap targets code{}         */
+/* directly.                                                              */
+/* Symptom: gray bars (every <code> has a #f8f9fa background) and barely  */
+/* readable text.                                                         */
+/* Fix: explicit rules on .qpyodide-output-code-stdout/stderr AND         */
+/* body.quarto-dark .qpyodide-terminal code with !important.              */
+/*                                                                         */
+/* === CSS VARIABLE PROBLEM (solved via JS sync) ===                      */
+/*                                                                         */
+/* Bootstrap 5 only sets dark-mode variables (--bs-body-color etc.) under */
+/* [data-bs-theme=dark]. Quarto, however, only toggles body.quarto-dark,  */
+/* NOT the attribute. qpyodide-cell-classes.js (qpyodideSyncBsTheme) has  */
+/* recently started mirroring body.quarto-dark/-light live onto           */
+/* body[data-bs-theme], because the values behind that attribute are      */
+/* already compiled theme-correctly (e.g. slate → #272b30 instead of the  */
+/* generic #212529) – they just sat unused. The rules below therefore     */
+/* use var(--bs-…, <old hex value>): once the sync has run, the theme     */
+/* color takes effect; without Bootstrap/before the sync, the old         */
+/* hardcoded value remains as a fallback.                                 */
+/*                                                                         */
+/* === OUTPUT HTML STRUCTURE OF THIS EXTENSION ===                        */
+/*                                                                         */
+/*   Standard output (no input()):                                        */
+/*   <div.qpyodide-output-code-area.has-content>                          */
+/*     <pre>                                                               */
+/*       <code class="qpyodide-output-code-stdout">line</code>            */
+/*       <code class="qpyodide-output-code-stderr">error</code>           */
+/*     </pre>                                                              */
+/*   </div>                                                                */
+/*                                                                         */
+/*   Terminal output (streaming / with input()):                          */
+/*   <div.qpyodide-output-code-area.has-content>                          */
+/*     <div.qpyodide-terminal>                                             */
+/*       <code class="qpyodide-output-code-stdout">line</code>            */
+/*       <code class="qpyodide-output-code-stderr">error</code>           */
+/*     </div>                                                              */
+/*   </div>                                                                */
+/*   (No <pre>! Bootstrap's pre rules do NOT apply here.)                 */
+/*                                                                         */
+/* === BOOTSTRAP 5 DARK REFERENCE VALUES ===                              */
+/*   body-bg #212529 · secondary-bg #343a40 · tertiary-bg #2b3035         */
+/*   body-color #dee2e6 · border #495057                                   */
+
+body.quarto-dark .qpyodide-editor {
+  background-color: #1e1e1e;
+}
+
+body.quarto-dark .qpyodide-toolbar-editable {
+  background-color: color-mix(in srgb, var(--bs-success, #198754) 35%, var(--bs-secondary-bg, #343a40));
+  color: var(--bs-body-color, #dee2e6);
+}
+
+body.quarto-dark .qpyodide-readonly-label {
+  opacity: 1;
+  color: var(--bs-emphasis-color, #ffffff);
+  font-weight: 600;
+}
+
+body.quarto-dark .qpyodide-storage-status {
+  color: var(--bs-emphasis-color, #ffffff);
+}
+
+body.quarto-dark .qpyodide-toolbar-readonly {
+  background-color: var(--bs-secondary-bg, #343a40);
+  color: var(--bs-body-color, #dee2e6);
+}
+
+body.quarto-dark .qpyodide-button {
+  background-color: var(--bs-secondary-bg, #343a40);
+  color: var(--bs-body-color, #dee2e6);
+  border-color: var(--bs-border-color, #495057);
+}
+
+body.quarto-dark .qpyodide-button:hover {
+  background-color: var(--bs-tertiary-bg, #2b3035);
+  color: var(--bs-body-color, #dee2e6);
+  border-color: #6c757d;
+}
+
+body.quarto-dark .qpyodide-button-reset,
+body.quarto-dark .qpyodide-button-copy,
+body.quarto-dark .qpyodide-button-feedback,
+body.quarto-dark .qpyodide-button-codeblock,
+body.quarto-dark .qpyodide-button-clear-saved,
+body.quarto-dark .qpyodide-button-save-cell {
+  color: var(--bs-body-color, #dee2e6);
+  opacity: 0.75;
+}
+
+body.quarto-dark .qpyodide-output-code-area.has-content {
+  background-color: var(--bs-body-bg, #212529) !important;
+  border-color: var(--bs-border-color, #495057);
+}
+
+/* Output text: !important is necessary because the extension CSS sits as
+   <style> in the <head> before the Bootstrap <link> tags. With equal
+   specificity, Bootstrap wins (later in the DOM). !important overrides the
+   source order and guarantees the override. */
+body.quarto-dark .qpyodide-output-code-area pre {
+  color: var(--bs-body-color, #dee2e6) !important;
+  background-color: transparent !important;
+}
+
+/* Bootstrap: code { background-color: #f8f9fa; color: var(--bs-code-color); }
+   Direct rules on <code> beat inheritance from the container → override
+   explicitly. stdout/stderr need different colors (as in the light-mode
+   counterpart above) – previously both were set to body-color, causing
+   stderr to lose its red error color in dark mode. */
+body.quarto-dark .qpyodide-output-code-stdout,
+body.quarto-dark .qpyodide-output-code-stderr {
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+
+body.quarto-dark .qpyodide-output-code-stdout {
+  color: var(--bs-body-color, #dee2e6) !important;
+}
+
+body.quarto-dark .qpyodide-output-code-stderr {
+  color: var(--bs-danger, #db4133) !important;
+}
+
+/* Terminal output (streaming / input() mode) */
+body.quarto-dark .qpyodide-terminal {
+  color: var(--bs-body-color, #dee2e6) !important;
+}
+
+/* No blanket `color` here: .qpyodide-output-code-stdout/-stderr (always
+   present on every <code> in the terminal, see qpyodide-cell-classes.js)
+   are more specific, BUT both rules use !important – with equal
+   importance, the higher selector specificity of `.qpyodide-terminal
+   code` wins, not the later rule in the stylesheet. A `color` here would
+   therefore *always* force body-color and cost stderr its red error color
+   (exactly the bug the stdout/stderr rules below are meant to fix). */
+body.quarto-dark .qpyodide-terminal code {
+  background-color: transparent !important;
+}
+
+/* The direct rule `code{background-color:#f8f9fa}` (see the GRAY-BARS
+   comment above) hits EVERY <code> on the page, not just our own output
+   elements – e.g. also normal Markdown inline code in headings/body text
+   (`## Cell 4 – changed `number`…`) or the `<code>input()</code>` in
+   .qpyodide-cell-input-hint. Only since qpyodideSyncBsTheme() sets
+   body[data-bs-theme=dark] does --bs-code-color flip to "white" (it would
+   otherwise stay at "inherit") → white text on an almost-white background,
+   unreadable. Since WE trigger this sync, this side effect outside our
+   own elements is our responsibility too. `:not(pre) > code` leaves real
+   code blocks (<pre><code class="sourceCode">, with their own syntax
+   highlighting) untouched.
+   Colour: NOT the body text colour, otherwise inline code is no longer
+   distinguishable from the surrounding text. Default is Bootstrap's dark-mode
+   code colour; a theme can override it via --qpyodide-inline-code-color. */
+body.quarto-dark :not(pre) > code {
+  color: var(--qpyodide-inline-code-color, #e685b5) !important;
+  background-color: var(--bs-tertiary-bg, #2b3035) !important;
+}
+
+body.quarto-dark .qpyodide-output-graph-area.has-content {
+  border-color: var(--bs-border-color, #495057);
+}
+
+body.quarto-dark .qpyodide-output-feedback-area:not(:empty) {
+  background-color: var(--bs-warning-bg-subtle, #2d2000);
+  border-color: var(--bs-warning-border-subtle, #6c5000);
+  color: var(--bs-body-color, #dee2e6);
+}
+
+body.quarto-dark .qpyodide-non-interactive-loading-container.qpyodide-cell-needs-evaluation,
+body.quarto-dark .qpyodide-non-interactive-loading-container.qpyodide-cell-evaluated {
+  background-color: rgba(33, 37, 41, 0.8);
+  border-color: var(--bs-border-color, #495057);
+}
+
+body.quarto-dark .qpyodide-feedback-panel {
+  background-color: var(--bs-secondary-bg, #343a40);
+  color-scheme: dark;
+}
+
+body.quarto-dark .qpyodide-feedback-help {
+  background-color: var(--bs-tertiary-bg, #2b3035);
+  border-color: var(--bs-border-color, #495057);
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.quarto-light) .qpyodide-editor {
+    background-color: #1e1e1e;
+  }
+  body:not(.quarto-light) .qpyodide-toolbar-editable {
+    background-color: color-mix(in srgb, var(--bs-success, #198754) 35%, var(--bs-secondary-bg, #343a40));
+    color: var(--bs-body-color, #dee2e6);
+  }
+  body:not(.quarto-light) .qpyodide-readonly-label {
+    opacity: 1;
+    color: var(--bs-emphasis-color, #ffffff);
+    font-weight: 600;
+  }
+  body:not(.quarto-light) .qpyodide-storage-status {
+    color: var(--bs-emphasis-color, #ffffff);
+  }
+  body:not(.quarto-light) .qpyodide-toolbar-readonly {
+    background-color: var(--bs-secondary-bg, #343a40);
+    color: var(--bs-body-color, #dee2e6);
+  }
+  body:not(.quarto-light) .qpyodide-button {
+    background-color: var(--bs-secondary-bg, #343a40);
+    color: var(--bs-body-color, #dee2e6);
+    border-color: var(--bs-border-color, #495057);
+  }
+  body:not(.quarto-light) .qpyodide-button:hover {
+    background-color: var(--bs-tertiary-bg, #2b3035);
+    color: var(--bs-body-color, #dee2e6);
+    border-color: #6c757d;
+  }
+  body:not(.quarto-light) .qpyodide-button-reset,
+  body:not(.quarto-light) .qpyodide-button-copy,
+  body:not(.quarto-light) .qpyodide-button-feedback,
+  body:not(.quarto-light) .qpyodide-button-codeblock,
+  body:not(.quarto-light) .qpyodide-button-clear-saved,
+  body:not(.quarto-light) .qpyodide-button-save-cell {
+    color: var(--bs-body-color, #dee2e6);
+    opacity: 0.75;
+  }
+  body:not(.quarto-light) .qpyodide-output-code-area.has-content {
+    background-color: var(--bs-body-bg, #212529) !important;
+    border-color: var(--bs-border-color, #495057);
+  }
+  body:not(.quarto-light) .qpyodide-output-code-area pre {
+    color: var(--bs-body-color, #dee2e6) !important;
+    background-color: transparent !important;
+  }
+  body:not(.quarto-light) .qpyodide-output-code-stdout,
+  body:not(.quarto-light) .qpyodide-output-code-stderr {
+    background-color: transparent !important;
+    padding: 0 !important;
+  }
+  body:not(.quarto-light) .qpyodide-output-code-stdout {
+    color: var(--bs-body-color, #dee2e6) !important;
+  }
+  body:not(.quarto-light) .qpyodide-output-code-stderr {
+    color: var(--bs-danger, #db4133) !important;
+  }
+  body:not(.quarto-light) .qpyodide-terminal {
+    color: var(--bs-body-color, #dee2e6) !important;
+  }
+  body:not(.quarto-light) .qpyodide-terminal code {
+    background-color: transparent !important;
+  }
+  body:not(.quarto-light) :not(pre) > code {
+    color: var(--bs-body-color, #dee2e6) !important;
+    background-color: var(--bs-tertiary-bg, #2b3035) !important;
+  }
+  body:not(.quarto-light) .qpyodide-output-graph-area.has-content {
+    border-color: var(--bs-border-color, #495057);
+  }
+  body:not(.quarto-light) .qpyodide-output-feedback-area:not(:empty) {
+    background-color: var(--bs-warning-bg-subtle, #2d2000);
+    border-color: var(--bs-warning-border-subtle, #6c5000);
+    color: var(--bs-body-color, #dee2e6);
+  }
+  body:not(.quarto-light) .qpyodide-non-interactive-loading-container.qpyodide-cell-needs-evaluation,
+  body:not(.quarto-light) .qpyodide-non-interactive-loading-container.qpyodide-cell-evaluated {
+    background-color: rgba(33, 37, 41, 0.8);
+    border-color: var(--bs-border-color, #495057);
+  }
+  body:not(.quarto-light) .qpyodide-feedback-panel {
+    background-color: var(--bs-secondary-bg, #343a40);
+    color-scheme: dark;
+  }
+  body:not(.quarto-light) .qpyodide-feedback-help {
+    background-color: var(--bs-tertiary-bg, #2b3035);
+    border-color: var(--bs-border-color, #495057);
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Terminal (streaming input/output)                                      */
+
+.qpyodide-terminal {
+  font-family: var(--bs-font-monospace, monospace);
+  font-size: 0.9em;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 0;
+  min-height: 0.5em;
+}
+
+.qpyodide-terminal code {
+  display: block;
+  white-space: pre-wrap;
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Row with an input field (Python is waiting on input()) */
+.qpyodide-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 2px 0;
+}
+
+.qpyodide-terminal-input {
+  font-family: inherit;
+  font-size: inherit;
+  background: transparent;
+  border: 1px dashed var(--bs-border-color, #aaa);
+  border-radius: 3px;
+  color: inherit;
+  padding: 1px 6px;
+  flex: 1;
+  max-width: 400px;
+  outline: none;
+  transition: border-color 0.15s, border-style 0.15s;
+}
+
+.qpyodide-terminal-input:focus {
+  border-color: var(--bs-primary, #0d6efd);
+  border-style: solid;
+}
+
+/* Prompt text to the left of the input field (comes from Python's input("...")) */
+.qpyodide-input-prompt {
+  white-space: pre;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+/* Entered text after submission (echo in the terminal) */
+.qpyodide-input-echo {
+  font-style: italic;
+  color: var(--bs-info-text-emphasis, #055160);
+}
+
+/* Collapsible panel below the status row (currently only used by
+   qpyodide-feedback.js for the settings panel) */
+#qpyodide-status-panels {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Notice in a cell when it uses input() but input() is (not yet)
+   available. The Run button is grayed out in that case (.qpyodide-button:disabled). */
+.qpyodide-cell-input-hint {
+  margin: 0.35rem 0 0.15rem;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85em;
+  line-height: 1.4;
+  color: var(--bs-body-color, #333);
+  background: var(--bs-warning-bg-subtle, #fff3cd);
+  border: 1px solid var(--bs-warning-border-subtle, #ffe69c);
+  border-radius: 4px;
+}
+
+.qpyodide-cell-input-hint code {
+  font-size: 0.95em;
+}
+
+body.quarto-dark .qpyodide-cell-input-hint {
+  color: var(--bs-body-color, #e9ecef);
+  background: color-mix(in srgb, var(--bs-warning, #ffc107) 12%, var(--bs-secondary-bg, #343a40));
+  border-color: color-mix(in srgb, var(--bs-warning, #ffc107) 30%, var(--bs-secondary-bg, #343a40));
+}
+
+/* Nudge shown under a manually-expanded cell, offering to reveal every
+   other still-folded cell in one go (see qpyodide-cell-classes.js). */
+.qpyodide-fold-nudge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.35rem 0 0.75rem;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85em;
+  line-height: 1.4;
+  color: var(--bs-body-color, #333);
+  background: var(--bs-info-bg-subtle, #cff4fc);
+  border: 1px solid var(--bs-info-border-subtle, #9eeaf9);
+  border-radius: 4px;
+}
+
+.qpyodide-fold-nudge span {
+  flex: 1 1 auto;
+}
+
+body.quarto-dark .qpyodide-fold-nudge {
+  color: var(--bs-body-color, #e9ecef);
+  background: color-mix(in srgb, var(--bs-info, #0dcaf0) 12%, var(--bs-secondary-bg, #343a40));
+  border-color: color-mix(in srgb, var(--bs-info, #0dcaf0) 30%, var(--bs-secondary-bg, #343a40));
+}
+
+body.quarto-dark .qpyodide-terminal-input {
+  border-color: var(--bs-border-color, #495057);
+}
+
+body.quarto-dark .qpyodide-input-echo {
+  color: #74c0fc;
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.quarto-light) .qpyodide-terminal-input {
+    border-color: var(--bs-border-color, #495057);
+  }
+  body:not(.quarto-light) .qpyodide-input-echo {
+    color: #74c0fc;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Marker cells inside a Quarto figure float                              */
+
+/* A marker cell (`# pyodide: ...` on a real `{python}` cell) keeps Quarto's
+   own figure float around the interactive editor, so that the caption and
+   the crossref anchor survive. That float brings
+   `.quarto-figure-center>figure>div{text-align:center}` with it, which is
+   right for the static image it normally wraps but wrong for an editor:
+   text-align inherits, so the source lines, the toolbar and the fold
+   summary all end up centered. Realign the cell's own containers - the
+   rules further up that deliberately center plot output and buttons target
+   those elements directly and still win over this. */
+.qpyodide-interactive-area,
+.qpyodide-non-interactive-area {
+  text-align: start;
+}
+
+/* ---------------------------------------------------------------------- */
+/* RevealJS presentations                                                 */
+
+.reveal div.qpyodide-interactive-area {
+  display: block;
+  box-shadow: none;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.reveal div.qpyodide-output-code-area pre div {
+  margin: 1px 2px 1px 10px;
+}
+
+/* Collapse the inside code tags to avoid extra space between line outputs */
+.reveal pre div code.qpyodide-output-code-stdout,
+.reveal pre div code.qpyodide-output-code-stderr {
+  padding: 0;
+  display: contents;
+}
+
+.reveal div.qpyodide-console-area {
+  border: 1px solid var(--bs-border-color, #eeeeee);
+  box-shadow: 2px 2px 10px var(--bs-border-color, #eeeeee);
+}
+
+/* Cap output height and allow text to scroll */
+.reveal div.qpyodide-output-code-area pre {
+  max-height: 400px;
+  overflow: scroll;
+}
+
+/* Interactive plots (canvas) --------------------------------------------
+   The hint only shows while the second Pyodide instance is loading, or if
+   the switchover fails. See qpyodide-canvas-plots.js. */
+.qpyodide-canvas-hint {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  font-style: italic;
+  margin: 0.25rem 0 0.5rem 0;
+}
+
+/* Center plots. For the PNG path and rich HTML output (animation, Plotly,
+   zeige_svg) there was previously no rule at all, so they were left-aligned. */
+.qpyodide-output-graph-area figure,
+.qpyodide-canvas-figure {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.qpyodide-output-graph-area img {
+  display: block;
+  margin-inline: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Blocks with their own width (Plotly) centered, inline content (the
+   animation player consists of img + control bar) via text-align. */
+.qpyodide-html-output {
+  text-align: center;
+}
+
+.qpyodide-html-output > * {
+  margin-inline: auto;
+}
+
+/* WebAgg renders at the figure's requested pixel dimensions. Prefer
+   horizontal scrolling to CSS downscaling, which would make it blurry. */
+.qpyodide-canvas-figure {
+  overflow-x: auto;
+}
+
+/* The browser does not need the desktop-style window title. */
+.qpyodide-canvas-figure .ui-dialog-titlebar {
+  display: none;
+}
+
+/* Pyodide below 0.28 (pinned via `pyodide: base-url:`): matplotlib-pyodide's
+   html5_canvas_backend, as in 1.6/1.7. See qpyodide-canvas-plots.js.
+   Its "window title" row ("Figure 1", ...) has no class of its own, only an
+   ID ending in "top" (FigureCanvasWasm.show()). */
+.qpyodide-canvas-legacy div[id$="top"] {
+  display: none;
+}
+
+/* Pan and zoom are toggles, but that backend renders no pressed state, so
+   the prelude keeps this class in sync with NavigationToolbar2.mode. The
+   :hover twin is needed because matplotlib-pyodide injects its own
+   `button.matplotlib-toolbar-button:hover` rule into <head> at runtime,
+   after this file, which would otherwise win on equal specificity. */
+button.matplotlib-toolbar-button.qpyodide-toolbar-button-active,
+button.matplotlib-toolbar-button.qpyodide-toolbar-button-active:hover {
+  color: #fff;
+  background: var(--bs-primary, #2780e3);
+  border-color: var(--bs-primary, #2780e3);
+}
+
+.qpyodide-editor-toolbar .qpyodide-feedback-gear {
+  margin: 0;
+  font-size: var(--ctm-button-font-size, .875rem);
+  padding: var(--ctm-button-padding-y, .375rem) var(--ctm-button-padding-x, .75rem);
+  line-height: var(--ctm-button-line-height, 1.5);
+}
+
+/* Runtime status spans the complete header grid. */
+#qpyodide-status-message-area { grid-column: 1 / -1; }
+
+.qpyodide-canvas-figure > div {
+  margin-inline: auto;
+}
+
+/* WebAgg puts its controls and changing status message in one inline row.
+   Because plot output is centered, every change in that message (coordinates,
+   pan/zoom help, etc.) would re-center the whole row and make the buttons move.
+   Keep the controls in a fixed first row and reserve a second row for status. */
+.qpyodide-canvas-figure .mpl-toolbar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  box-sizing: border-box;
+  padding-bottom: 1.7em;
+  text-align: left;
+}
+
+.qpyodide-canvas-figure .mpl-toolbar .mpl-button-group,
+.qpyodide-canvas-figure .mpl-toolbar > select.mpl-widget {
+  flex: 0 0 auto;
+}
+
+.qpyodide-canvas-figure .mpl-toolbar .mpl-message {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  min-width: 0;
+  height: 1.7em;
+  min-height: 1.7em;
+  padding-top: 0.2em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
